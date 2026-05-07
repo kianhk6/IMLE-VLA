@@ -6,7 +6,7 @@
   <meta name="title" content="&pi;-IMLE: Fast Single-Step Action Generation for Generalist VLA Policies">
   <meta name="description" content="&pi;-IMLE replaces iterative flow-matching with a single-step cIMLE action head, boosting VLA inference 3.67x while achieving the highest LIBERO success rate.">
   <meta name="keywords" content="robotics, VLA, IMLE, diffusion policy, flow matching, inference speed, pi0.5">
-  <meta name="author" content="Anonymous Authors">
+  <meta name="author" content="Kian Hosseinkhani, George Shramko, Mehran Aghabozorgi, Qinhe Peng, Jianing Qian, Tristan Engst, Alireza Moazeni, Dinesh Jayaraman, Ke Li">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#111827">
 
@@ -14,6 +14,8 @@
 
   <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
   <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
   <link rel="stylesheet" href="static/css/index.css">
   <link rel="preload" href="static/css/fontawesome.all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="static/css/fontawesome.all.min.css"></noscript>
@@ -41,9 +43,38 @@
               <p class="subtitle is-4" style="margin-bottom:1.5rem;">
                 Fast Single-Step Action Generation for Generalist Vision-Language-Action Policies
               </p>
+
               <div class="is-size-5 publication-authors">
-                <span class="author-block">Anonymous Authors</span>
+                <span class="author-block">Kian Hosseinkhani<sup>1*</sup>,</span>
+                <span class="author-block">George Shramko<sup>1</sup>,</span>
+                <span class="author-block">Mehran Aghabozorgi<sup>1</sup>,</span>
+                <span class="author-block">Qinhe Peng<sup>2</sup>,</span>
+                <span class="author-block">Jianing Qian<sup>2</sup>,</span>
+                <span class="author-block">Tristan Engst<sup>1</sup>,</span>
+                <span class="author-block">Alireza Moazeni<sup>1</sup>,</span>
+                <span class="author-block">Dinesh Jayaraman<sup>2</sup>,</span>
+                <span class="author-block">Ke Li<sup>1</sup></span>
               </div>
+
+              <div class="publication-affiliations is-size-6">
+                <div><sup>1</sup>APEX Lab &middot; School of Computing Science &middot; Simon Fraser University</div>
+                <div><sup>2</sup>University of Pennsylvania</div>
+                <div class="affiliation-emails">
+                  {kian_hosseinkhani, george_shramko, maa143, tme3, sam62, keli}@sfu.ca &middot;
+                  {pengqh20, jianingq, dineshj}@seas.upenn.edu
+                </div>
+                <div class="affiliation-corresponding"><sup>*</sup>Corresponding author</div>
+              </div>
+
+              <div class="institution-logos">
+                <div class="institution-logos__chip institution-logos__chip--dark">
+                  <img src="static/images/logos/sfu_reversed.png" alt="Simon Fraser University">
+                </div>
+                <div class="institution-logos__chip">
+                  <img src="static/images/logos/upenn_full.png" alt="University of Pennsylvania">
+                </div>
+              </div>
+
               <div class="publication-links" style="margin-top:1rem;">
                 <span class="link-block">
                   <a href="#" class="external-link button is-normal is-rounded is-dark">
@@ -74,20 +105,6 @@
             Current VLAs couple a pretrained VLM with an iterative action head that runs 10 sequential denoising steps per action chunk.
             &pi;-IMLE replaces this with a <em>single-step</em> cIMLE generator&mdash;same VLM backbone, 1 forward pass instead of 10, yielding a <strong>3.67&times; speedup</strong>.
           </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ====== TEASER VIDEO ====== -->
-    <section class="section">
-      <div class="container is-max-desktop">
-        <div class="columns is-centered">
-          <div class="column is-four-fifths">
-            <video id="teaser-video" autoplay controls muted loop preload="metadata" width="100%"
-                   style="border-radius:var(--border-radius-lg); box-shadow:var(--shadow-lg);">
-              <source src="static/videos/teaser.mp4" type="video/mp4">
-            </video>
-          </div>
         </div>
       </div>
     </section>
@@ -270,13 +287,52 @@
     </section>
 
     <!-- ============================================================ -->
+    <!--  SECTION 1.5: LIBERO-Plus Robustness                          -->
+    <!-- ============================================================ -->
+    <section class="section">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3">LIBERO-Plus: Robustness Under Distribution Shift</h2>
+
+        <div class="columns is-variable is-6 is-vcentered libero-plus-row">
+          <div class="column is-5">
+            <div class="content has-text-justified">
+              <p>
+                <strong>Robustness under distribution shift.</strong>
+                LIBERO-Plus applies systematic test-time perturbations across <strong>4 axes</strong>
+                &mdash; background, robot initial state, language, and layout &mdash; at
+                <strong>5 severity levels (L1&ndash;L5)</strong>, stress-testing each policy as
+                conditions drift further from training.
+              </p>
+              <p>
+                <strong>&pi;-IMLE retains &pi;<sub>0.5</sub>'s robustness</strong> across every axis
+                and severity, while baselines collapse as severity increases.
+                OpenVLA-OFT's L1 regression head folds to the <em>median mode</em> under shift,
+                losing diversity exactly when it's most needed; cIMLE instead enforces
+                <strong>mode coverage by construction</strong>, so &pi;-IMLE inherits
+                &pi;<sub>0.5</sub>'s multimodal action distribution while still generating
+                actions in a <em>single forward pass</em>.
+              </p>
+            </div>
+          </div>
+          <div class="column is-7">
+            <figure class="image libero-plus-figure">
+              <img src="static/images/libero_plus.png"
+                   alt="LIBERO-Plus robustness curves: accuracy vs severity (L1 to L5) for OpenVLA, OpenVLA-OFT, &pi;0, &pi;0.5, and &pi;-IMLE across four perturbation axes (background, robot init, language, layout). &pi;-IMLE tracks &pi;0.5 closely while baselines drop sharply."
+                   style="border-radius:var(--border-radius-lg); box-shadow:var(--shadow-md); width:100%;">
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
     <!--  SECTION 2: REAL-WORLD VIDEOS                                -->
     <!-- ============================================================ -->
     <section class="section hero is-light">
       <div class="container is-max-desktop">
         <h2 class="title is-3">Real-World Videos</h2>
 
-        <div class="content has-text-justified" style="margin-bottom:1.5rem;">
+        <div class="content has-text-justified" style="margin-bottom:1rem;">
           <p>
             We evaluate on a <strong>Franka Emika Panda</strong> with an NVIDIA A6000, using two camera views (wrist + scene).
             Both policies are trained on DROID and deployed <em>zero-shot</em> on four tabletop manipulation tasks
@@ -284,45 +340,77 @@
             &pi;<sub>0.5</sub> runs at 15&thinsp;Hz (<em>H</em>=8); &pi;-IMLE runs at 55&thinsp;Hz (<em>H</em>=12),
             still yielding a shorter wall-clock replan interval.
           </p>
+          <p>
+            <strong>Motion quality.</strong> Across all four tasks, &pi;-IMLE produces noticeably smoother motion.
+            The faster inference minimizes robot idle time, while the longer execution horizon reduces
+            replanning discontinuities. Together these eliminate the visible stop-wait-execute pauses
+            of &pi;<sub>0.5</sub>.
+          </p>
         </div>
 
         <!-- Task descriptions + Videos -->
-        <h3 class="title is-5" style="margin-top:2rem;">Task Videos</h3>
-        <div class="video-grid">
+        <!--
+          Native video pixel dimensions (preserve aspect ratio per card):
+            pineapple_in_cabinet.mp4     1620 x 1080   (Task 1, multi-step)
+            swap_pineapple_cube.mp4      1328 x  530   (Task 2, multi-step)
+            pineapple_in_bowl.mp4        1330 x  540   (Task 3, single-step)
+            reactive_ours_success.mp4    1920 x 1080   (reactive, ours)
+            reactive_theirs_fail.mp4     1920 x 1080   (reactive, baseline)
+        -->
+
+        <!-- Static (non-reactive) tasks -->
+        <h3 class="title is-5" style="margin-top:2rem;">Static Task Videos</h3>
+        <div class="video-grid video-grid--stack">
           <div class="video-card">
-            <h4>Pineapple in Bowl <span class="tag is-info is-light">single-step</span></h4>
-            <p>Grasp a squishy pineapple and place it into a bowl.</p>
-            <video controls muted loop preload="metadata"><source src="static/videos/real/pineapple_in_bowl.mp4" type="video/mp4"></video>
-          </div>
-          <div class="video-card">
-            <h4>Swap Pineapple &amp; Cube <span class="tag is-warning is-light">multi-step</span></h4>
-            <p>Remove pineapple from bowl, then place the red cube inside.</p>
-            <video controls muted loop preload="metadata"><source src="static/videos/real/swap_pineapple_cube.mp4" type="video/mp4"></video>
-          </div>
-          <div class="video-card">
-            <h4>Pineapple in Cabinet <span class="tag is-warning is-light">multi-step</span></h4>
+            <h4>Task 1 &mdash; Pineapple in Cabinet <span class="tag is-warning is-light">multi-step</span></h4>
             <p>Pick up pineapple, place inside cabinet, close the door.</p>
-            <video controls muted loop preload="metadata"><source src="static/videos/real/pineapple_in_cabinet.mp4" type="video/mp4"></video>
+            <video controls muted loop playsinline preload="metadata" style="aspect-ratio: 3 / 2;">
+              <source src="static/videos/real/pineapple_in_cabinet.mp4" type="video/mp4">
+            </video>
           </div>
           <div class="video-card">
-            <h4>Pineapple on Moving Plate <span class="tag is-danger is-light">reactive</span></h4>
-            <p>Place pineapple on a plate driven by a moving RC car&mdash;requires continuous target tracking.</p>
-            <video controls muted loop preload="metadata"><source src="static/videos/real/pineapple_moving_plate.mp4" type="video/mp4"></video>
+            <h4>Task 2 &mdash; Swap Pineapple &amp; Cube <span class="tag is-warning is-light">multi-step</span></h4>
+            <p>Remove pineapple from bowl, then place the red cube inside.</p>
+            <video controls muted loop playsinline preload="metadata" style="aspect-ratio: 1328 / 530;">
+              <source src="static/videos/real/swap_pineapple_cube.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="video-card">
+            <h4>Task 3 &mdash; Pineapple in Bowl <span class="tag is-info is-light">single-step</span></h4>
+            <p>Grasp a squishy pineapple and place it into a bowl.</p>
+            <video controls muted loop playsinline preload="metadata" style="aspect-ratio: 1330 / 540;">
+              <source src="static/videos/real/pineapple_in_bowl.mp4" type="video/mp4">
+            </video>
           </div>
         </div>
 
-        <div class="content has-text-justified" style="margin-top:1.5rem;">
+        <!-- Reactive task: side-by-side comparison -->
+        <h3 class="title is-5" style="margin-top:2.5rem;">Reactive Task Video</h3>
+        <div class="content has-text-justified" style="margin-bottom:1rem;">
           <p>
-            <strong>Motion quality.</strong> &pi;-IMLE produces noticeably smoother motion. The faster inference
-            minimizes robot idle time, while the longer execution horizon reduces replanning discontinuities.
-            Together these eliminate the visible stop-wait-execute pauses of &pi;<sub>0.5</sub>.
+            <strong>Pineapple on a Moving Plate.</strong> The plate is driven by a remote-controlled car,
+            so the target is in continuous motion. Success requires the policy to close the
+            perception&ndash;action loop quickly and continuously track the plate while reaching.
+            &pi;-IMLE&rsquo;s 55&thinsp;Hz single-step inference acts on fresh observations and lands the
+            pineapple on the moving target. &pi;<sub>0.5</sub> at 15&thinsp;Hz acts on stale observations
+            and repeatedly reaches toward outdated locations, missing the plate.
           </p>
-          <p>
-            <strong>Reactive task.</strong> On <em>pineapple on moving plate</em>, &pi;-IMLE closes the
-            perception&ndash;action loop more frequently, continuously tracking the plate.
-            &pi;<sub>0.5</sub> acts on increasingly stale observations and repeatedly reaches toward
-            outdated target locations.
-          </p>
+        </div>
+        <div class="video-grid">
+          <div class="video-card">
+            <h4>&pi;-IMLE (Ours) <span class="tag is-success is-light">success</span></h4>
+            <p>Tracks the moving plate continuously and places the pineapple on target.</p>
+            <video controls muted loop playsinline preload="metadata" style="aspect-ratio: 16 / 9;">
+              <source src="static/videos/real/reactive_ours_success.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="video-card">
+            <h4>&pi;<sub>0.5</sub> (Baseline) <span class="tag is-danger is-light">failure</span></h4>
+            <p>Acts on stale observations and reaches toward outdated plate positions.</p>
+            <video controls muted loop playsinline preload="metadata" style="aspect-ratio: 16 / 9;">
+              <source src="static/videos/real/reactive_theirs_fail.mp4" type="video/mp4">
+            </video>
+          </div>
         </div>
       </div>
     </section>

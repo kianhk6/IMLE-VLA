@@ -1,0 +1,10 @@
+# Heavy source video originals (top-level only) — only the transcoded mp4s
+# under static/videos/ ship to the site.
+/videos/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/
+.idea/

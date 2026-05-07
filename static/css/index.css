@@ -148,7 +148,71 @@ body {
 .publication-authors {
     font-family: 'Inter', sans-serif !important;
     font-weight: 500;
+    margin-bottom: 0.75rem;
+}
+
+.publication-affiliations {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-secondary);
+    line-height: 1.55;
     margin-bottom: 1.5rem;
+}
+
+.publication-affiliations sup {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.publication-affiliations .affiliation-emails {
+    margin-top: 0.4rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.88em;
+    color: var(--text-light);
+    word-break: break-word;
+}
+
+.publication-affiliations .affiliation-corresponding {
+    margin-top: 0.25rem;
+    font-size: 0.85em;
+    color: var(--text-light);
+}
+
+.institution-logos {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    margin: 1.25rem 0 0.5rem;
+}
+
+.institution-logos__chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.6rem 1rem;
+    border-radius: var(--border-radius);
+}
+
+.institution-logos__chip img {
+    width: auto;
+    display: block;
+}
+
+/* Penn full-color logo: render larger so the wordmark is comfortably readable. */
+.institution-logos__chip:not(.institution-logos__chip--dark) img[src*="upenn"] {
+    height: 72px;
+}
+
+/* The SFU asset we have is the reversed (white) variant, so it needs
+   a dark backdrop to be legible on the light hero. */
+.institution-logos__chip--dark {
+    background: #14213d;
+    box-shadow: var(--shadow-sm);
+}
+
+.institution-logos__chip--dark img {
+    height: 40px;
 }
 
 .publication-venue {
@@ -852,6 +916,12 @@ a:focus {
   gap: 1rem;
 }
 
+/* Single-column variant: stacks cards full-width (used for the 3 static tasks
+   so the panoramic clips render at a comfortable size). */
+.video-grid--stack {
+  grid-template-columns: 1fr;
+}
+
 .video-card {
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
@@ -872,8 +942,12 @@ a:focus {
 }
 
 .video-card video {
+  display: block;
   width: 100%;
+  height: auto;
+  background: #000;
   border-radius: var(--border-radius);
+  /* aspect-ratio is set inline per-video to match each clip's native dimensions */
 }
 
 .libero-table {
