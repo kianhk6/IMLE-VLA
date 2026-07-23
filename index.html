@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="title" content="&pi;-IMLE: Fast Single-Step Action Generation for Generalist VLA Policies">
-  <meta name="description" content="&pi;-IMLE replaces iterative flow-matching with a single-step cIMLE action head, boosting VLA inference 3.67x while achieving the highest LIBERO success rate.">
+  <meta name="title" content="IMLE-VLA: Fast Single-Step Action Generation for Vision-Language-Action Policies">
+  <meta name="description" content="IMLE-VLA replaces iterative flow-matching with a single-step cIMLE action head, boosting VLA inference 3.67x while achieving the highest LIBERO success rate.">
   <meta name="keywords" content="robotics, VLA, IMLE, diffusion policy, flow matching, inference speed, pi0.5">
-  <meta name="author" content="Kian Hosseinkhani, George Shramko, Mehran Aghabozorgi, Qinhe Peng, Jianing Qian, Tristan Engst, Alireza Moazeni, Dinesh Jayaraman, Ke Li">
+  <meta name="author" content="Kian Hosseinkhani, Qinhe Peng, George Shramko, Mehran Aghabozorgi, Jianing Qian, Tristan Engst, Alireza Moazeni, Dinesh Jayaraman, Ke Li">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#111827">
 
-  <title>&pi;-IMLE | Project Page</title>
+  <title>IMLE-VLA | Project Page</title>
 
   <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
   <link rel="stylesheet" href="static/css/bulma.min.css">
@@ -39,26 +39,30 @@
         <div class="container is-max-desktop">
           <div class="columns is-centered">
             <div class="column has-text-centered">
-              <h1 class="title is-1 publication-title">&pi;-IMLE</h1>
-              <p class="subtitle is-4" style="margin-bottom:1.5rem;">
-                Fast Single-Step Action Generation for Generalist Vision-Language-Action Policies
+              <h1 class="title is-1 publication-title">IMLE-VLA</h1>
+              <p class="subtitle is-4" style="margin-bottom:0.75rem;">
+                Fast Single-Step Action Generation for Vision-Language-Action Policies
+              </p>
+              <p class="is-size-5 publication-venue" style="margin-bottom:1.5rem; font-weight:600;">
+                IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS) 2026
               </p>
 
               <div class="is-size-5 publication-authors">
                 <span class="author-block">Kian Hosseinkhani<sup>1*</sup>,</span>
+                <span class="author-block">Qinhe Peng<sup>2</sup>,</span>
                 <span class="author-block">George Shramko<sup>1</sup>,</span>
                 <span class="author-block">Mehran Aghabozorgi<sup>1</sup>,</span>
-                <span class="author-block">Qinhe Peng<sup>2</sup>,</span>
                 <span class="author-block">Jianing Qian<sup>2</sup>,</span>
                 <span class="author-block">Tristan Engst<sup>1</sup>,</span>
                 <span class="author-block">Alireza Moazeni<sup>1</sup>,</span>
                 <span class="author-block">Dinesh Jayaraman<sup>2</sup>,</span>
-                <span class="author-block">Ke Li<sup>1</sup></span>
+                <span class="author-block">Ke Li<sup>1,3,4</sup></span>
               </div>
 
               <div class="publication-affiliations is-size-6">
                 <div><sup>1</sup>APEX Lab &middot; School of Computing Science &middot; Simon Fraser University</div>
                 <div><sup>2</sup>University of Pennsylvania</div>
+                <div><sup>3</sup>Alberta Machine Intelligence Institute (Amii) &middot; <sup>4</sup>Canada CIFAR AI Chair</div>
                 <div class="affiliation-emails">
                   {kian_hosseinkhani, george_shramko, maa143, tme3, sam62, keli}@sfu.ca &middot;
                   {pengqh20, jianingq, dineshj}@seas.upenn.edu
@@ -98,12 +102,12 @@
       <div class="container is-max-widescreen">
         <div class="hero-body">
           <figure class="image overview-figure" style="max-width:1400px; margin-left:auto; margin-right:auto;">
-            <img src="static/images/overview.png" alt="Overview of &pi;-IMLE: the frozen VLM backbone feeds into a single-step cIMLE action head (1 forward pass, 55 Hz) instead of a 10-step flow-matching head (15 Hz), yielding a 3.7x speedup.">
+            <img src="static/images/overview.png" alt="Overview of IMLE-VLA: the frozen VLM backbone feeds into a single-step cIMLE action head (1 forward pass, 55 Hz) instead of a 10-step flow-matching head (15 Hz), yielding a 3.7x speedup.">
           </figure>
           <p class="has-text-centered overview-caption">
             <strong>The problem &amp; our solution.</strong>
             Current VLAs couple a pretrained VLM with an iterative action head that runs 10 sequential denoising steps per action chunk.
-            &pi;-IMLE replaces this with a <em>single-step</em> cIMLE generator&mdash;same VLM backbone, 1 forward pass instead of 10, yielding a <strong>3.67&times; speedup</strong>.
+            IMLE-VLA replaces this with a <em>single-step</em> cIMLE generator&mdash;same VLM backbone, 1 forward pass instead of 10, yielding a <strong>3.67&times; speedup</strong>.
           </p>
         </div>
       </div>
@@ -122,10 +126,10 @@
                 create an inference bottleneck that causes stop-and-go robot movement.
               </p>
               <p>
-                <strong>&pi;-IMLE</strong> replaces the iterative action head with a <em>single-step</em> conditional
+                <strong>IMLE-VLA</strong> replaces the iterative action head with a <em>single-step</em> conditional
                 generator trained via Implicit Maximum Likelihood Estimation (cIMLE). cIMLE provably preserves
                 multimodal action coverage&mdash;avoiding mode collapse&mdash;while eliminating multi-step sampling entirely.
-                Applied to &pi;<sub>0.5</sub>, &pi;-IMLE increases inference frequency
+                Applied to &pi;<sub>0.5</sub>, IMLE-VLA increases inference frequency
                 <strong>3.67&times;</strong> (55&thinsp;Hz vs 15&thinsp;Hz), enabling up to <strong>11&times;</strong>
                 higher action throughput. On the 40-task LIBERO benchmark it achieves the highest average success
                 rate (<strong>98.0%</strong>). Real-world Franka Panda experiments show smoother motion and
@@ -152,7 +156,7 @@
                 The core bottleneck in VLAs like &pi;<sub>0.5</sub> is <em>algorithmic</em>, not hardware:
                 the 10-step flow-matching loop imposes a ceiling that system-level optimizations alone cannot break.
                 Porting &pi;<sub>0.5</sub> from JAX to PyTorch+compile or hand-tuned Triton kernels yields only
-                modest gains (20&ndash;25&thinsp;Hz). &pi;-IMLE sidesteps this entirely by generating actions in
+                modest gains (20&ndash;25&thinsp;Hz). IMLE-VLA sidesteps this entirely by generating actions in
                 <strong>one forward pass</strong>, reaching <strong>55&thinsp;Hz</strong>&mdash;a 3.67&times; increase.
               </p>
             </div>
@@ -160,7 +164,7 @@
           <div class="column is-7">
             <figure class="image speedup-figure">
               <img src="static/images/pi05_imle_speedup.png"
-                   alt="Architecture comparison: &pi;0.5 runs the 300M action expert 10 times sequentially; &pi;-IMLE runs it once, achieving &gt;3.7&times; speedup."
+                   alt="Architecture comparison: &pi;0.5 runs the 300M action expert 10 times sequentially; IMLE-VLA runs it once, achieving &gt;3.7&times; speedup."
                    style="border-radius:var(--border-radius-lg); box-shadow:var(--shadow-md); width:100%;">
             </figure>
           </div>
@@ -175,7 +179,7 @@
                 VLA forward passes per second (NVIDIA L40S).
                 The first three bars are all &pi;<sub>0.5</sub> under different system-level optimizations &mdash;
                 faster runtimes help, but the iterative denoising loop caps the gains.
-                &pi;-IMLE removes that loop entirely, reaching 55&thinsp;Hz (3.67&times;).
+                IMLE-VLA removes that loop entirely, reaching 55&thinsp;Hz (3.67&times;).
               </p>
               <div class="chart-wrapper chart-wrapper--tall"><canvas id="inference-chart"></canvas></div>
             </div>
@@ -185,7 +189,7 @@
               <h3 class="title is-5">Action Throughput (actions/sec)</h3>
               <p class="chart-caption">
                 Throughput = inference frequency &times; execution horizon <em>H</em>.
-                &pi;-IMLE&rsquo;s single-step generation compounds with a longer horizon,
+                IMLE-VLA&rsquo;s single-step generation compounds with a longer horizon,
                 increasing action throughput from <strong>5.5&times;</strong> to <strong>11&times;</strong>
                 over &pi;<sub>0.5</sub>.
               </p>
@@ -226,7 +230,7 @@
                   </thead>
                   <tbody>
                     <tr>
-                      <td><strong>&pi;-IMLE (Ours)</strong></td>
+                      <td><strong>IMLE-VLA (Ours)</strong></td>
                       <td><strong>0.10</strong></td>
                       <td><strong>10.3&times;</strong></td>
                     </tr>
@@ -304,11 +308,11 @@
                 conditions drift further from training.
               </p>
               <p>
-                <strong>&pi;-IMLE retains &pi;<sub>0.5</sub>'s robustness</strong> across every axis
+                <strong>IMLE-VLA retains &pi;<sub>0.5</sub>'s robustness</strong> across every axis
                 and severity, while baselines collapse as severity increases.
                 OpenVLA-OFT's L1 regression head folds to the <em>median mode</em> under shift,
                 losing diversity exactly when it's most needed; cIMLE instead enforces
-                <strong>mode coverage by construction</strong>, so &pi;-IMLE inherits
+                <strong>mode coverage by construction</strong>, so IMLE-VLA inherits
                 &pi;<sub>0.5</sub>'s multimodal action distribution while still generating
                 actions in a <em>single forward pass</em>.
               </p>
@@ -317,7 +321,7 @@
           <div class="column is-7">
             <figure class="image libero-plus-figure">
               <img src="static/images/libero_plus.png"
-                   alt="LIBERO-Plus robustness curves: accuracy vs severity (L1 to L5) for OpenVLA, OpenVLA-OFT, &pi;0, &pi;0.5, and &pi;-IMLE across four perturbation axes (background, robot init, language, layout). &pi;-IMLE tracks &pi;0.5 closely while baselines drop sharply."
+                   alt="LIBERO-Plus robustness curves: accuracy vs severity (L1 to L5) for OpenVLA, OpenVLA-OFT, &pi;0, &pi;0.5, and IMLE-VLA across four perturbation axes (background, robot init, language, layout). IMLE-VLA tracks &pi;0.5 closely while baselines drop sharply."
                    style="border-radius:var(--border-radius-lg); box-shadow:var(--shadow-md); width:100%;">
             </figure>
           </div>
@@ -337,11 +341,11 @@
             We evaluate on a <strong>Franka Emika Panda</strong> with an NVIDIA A6000, using two camera views (wrist + scene).
             Both policies are trained on DROID and deployed <em>zero-shot</em> on four tabletop manipulation tasks
             spanning single-step, multi-step, and dynamic-reactivity categories.
-            &pi;<sub>0.5</sub> runs at 15&thinsp;Hz (<em>H</em>=8); &pi;-IMLE runs at 55&thinsp;Hz (<em>H</em>=12),
+            &pi;<sub>0.5</sub> runs at 15&thinsp;Hz (<em>H</em>=8); IMLE-VLA runs at 55&thinsp;Hz (<em>H</em>=12),
             still yielding a shorter wall-clock replan interval.
           </p>
           <p>
-            <strong>Motion quality.</strong> Across all four tasks, &pi;-IMLE produces noticeably smoother motion.
+            <strong>Motion quality.</strong> Across all four tasks, IMLE-VLA produces noticeably smoother motion.
             The faster inference minimizes robot idle time, while the longer execution horizon reduces
             replanning discontinuities. Together these eliminate the visible stop-wait-execute pauses
             of &pi;<sub>0.5</sub>.
@@ -391,14 +395,14 @@
             <strong>Pineapple on a Moving Plate.</strong> The plate is driven by a remote-controlled car,
             so the target is in continuous motion. Success requires the policy to close the
             perception&ndash;action loop quickly and continuously track the plate while reaching.
-            &pi;-IMLE&rsquo;s 55&thinsp;Hz single-step inference acts on fresh observations and lands the
+            IMLE-VLA&rsquo;s 55&thinsp;Hz single-step inference acts on fresh observations and lands the
             pineapple on the moving target. &pi;<sub>0.5</sub> at 15&thinsp;Hz acts on stale observations
             and repeatedly reaches toward outdated locations, missing the plate.
           </p>
         </div>
         <div class="video-grid">
           <div class="video-card">
-            <h4>&pi;-IMLE (Ours) <span class="tag is-success is-light">success</span></h4>
+            <h4>IMLE-VLA (Ours) <span class="tag is-success is-light">success</span></h4>
             <p>Tracks the moving plate continuously and places the pineapple on target.</p>
             <video controls muted loop playsinline preload="metadata" style="aspect-ratio: 16 / 9;">
               <source src="static/videos/real/reactive_ours_success.mp4" type="video/mp4">
@@ -433,7 +437,7 @@
         <div class="content has-text-justified" style="margin-bottom:1rem;">
           <p>
             Success counts out of 10 episodes on a Franka Emika Panda (zero-shot deployment).
-            &pi;-IMLE outperforms &pi;<sub>0.5</sub> on every task.
+            IMLE-VLA outperforms &pi;<sub>0.5</sub> on every task.
           </p>
         </div>
 
@@ -442,7 +446,7 @@
             <thead>
               <tr>
                 <th>Task</th>
-                <th>&pi;-IMLE (Ours) &uarr;</th>
+                <th>IMLE-VLA (Ours) &uarr;</th>
                 <th>&pi;<sub>0.5</sub> &uarr;</th>
               </tr>
             </thead>
@@ -476,7 +480,7 @@
           <p>
             LIBERO comprises 40 tabletop manipulation tasks across four suites (Spatial, Object, Goal, Long)
             evaluated over 50 episodes each.
-            &pi;-IMLE achieves the <strong>highest average success rate (98.0%)</strong> among all compared
+            IMLE-VLA achieves the <strong>highest average success rate (98.0%)</strong> among all compared
             methods while <em>simultaneously</em> leading in inference frequency (3.67&times; &pi;<sub>0.5</sub>).
             No other method leads in both.
           </p>
@@ -558,12 +562,12 @@
 
               <tr class="is-selected">
                 <td rowspan="2"><strong>Single-Step (ours)</strong></td>
-                <td><strong>&pi;-IMLE</strong></td><td>10</td>
+                <td><strong>IMLE-VLA</strong></td><td>10</td>
                 <td><u>98.0</u></td><td><strong>99.8</strong></td><td><strong>98.2</strong></td><td><strong>96.0</strong></td>
                 <td><strong>98.0</strong></td><td><strong>3.67</strong></td>
               </tr>
               <tr class="is-selected">
-                <td><strong>&pi;-IMLE</strong></td><td>30</td>
+                <td><strong>IMLE-VLA</strong></td><td>30</td>
                 <td>97.2</td><td><u>99.0</u></td><td>96.2</td><td><u>95.8</u></td>
                 <td>97.1</td><td><strong>3.67</strong></td>
               </tr>
@@ -578,7 +582,7 @@
       </div>
     </section>
 
-    <!-- ====== BIBTEX ====== -->
+    <!-- ====== BIBTEX (hidden until arXiv/proceedings entry is ready) ======
     <section class="section" id="BibTeX">
       <div class="container is-max-desktop content">
         <div class="bibtex-header">
@@ -588,14 +592,14 @@
             <span class="copy-text">Copy</span>
           </button>
         </div>
-        <pre id="bibtex-code"><code>@article{piimle2026,
-  title={\pi-IMLE: Fast Single-Step Action Generation for Generalist Vision-Language-Action Policies},
-  author={Anonymous Authors},
-  journal={arXiv preprint arXiv:xxxx.xxxxx},
+        <pre id="bibtex-code"><code>@article{imlevla2026,
+  title={IMLE-VLA: Fast Single-Step Action Generation for Vision-Language-Action Policies},
+  author={Hosseinkhani, Kian and Peng, Qinhe and Shramko, George and Aghabozorgi, Mehran and Qian, Jianing and Engst, Tristan and Moazeni, Alireza and Jayaraman, Dinesh and Li, Ke},
   year={2026}
 }</code></pre>
       </div>
     </section>
+    -->
 
     <footer class="footer">
       <div class="container">
