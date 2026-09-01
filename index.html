@@ -132,7 +132,8 @@
                 Applied to &pi;<sub>0.5</sub>, IMLE-VLA increases inference frequency
                 <strong>3.67&times;</strong> (55&thinsp;Hz vs 15&thinsp;Hz), enabling up to <strong>11&times;</strong>
                 higher action throughput. On the 40-task LIBERO benchmark it achieves the highest average success
-                rate (<strong>98.0%</strong>). Real-world Franka Panda experiments show smoother motion and
+                rate (<strong>98.0%</strong>). Real-world Franka Panda experiments show smoother motion
+                (<strong>2.2&times;&ndash;3.0&times;</strong> lower jerk) and
                 <strong>3.9&times;&ndash;6.6&times;</strong> lower VLA wall-clock per episode, outperforming
                 &pi;<sub>0.5</sub> on every task.
               </p>
@@ -348,48 +349,25 @@
             <strong>Motion quality.</strong> Across all four tasks, IMLE-VLA produces noticeably smoother motion.
             The faster inference minimizes robot idle time, while the longer execution horizon reduces
             replanning discontinuities. Together these eliminate the visible stop-wait-execute pauses
-            of &pi;<sub>0.5</sub>.
+            of &pi;<sub>0.5</sub>. We quantify this via <em>proprioceptive jerk</em> &mdash; the third
+            finite difference of the measured joint positions (7 arm joints), a standard smoothness
+            proxy where lower is better. IMLE-VLA reduces mean jerk by
+            <strong>2.2&times;&ndash;3.0&times;</strong> across all four tasks.
           </p>
         </div>
 
         <!-- Task descriptions + Videos -->
         <!--
           Native video pixel dimensions (preserve aspect ratio per card):
-            pineapple_in_cabinet.mp4     1620 x 1080   (Task 1, multi-step)
-            swap_pineapple_cube.mp4      1328 x  530   (Task 2, multi-step)
-            pineapple_in_bowl.mp4        1330 x  540   (Task 3, single-step)
-            reactive_ours_success.mp4    1920 x 1080   (reactive, ours)
-            reactive_theirs_fail.mp4     1920 x 1080   (reactive, baseline)
+            swap_pineapple_cube.mp4      1328 x  530   (Task 1, multi-step)
+            pineapple_in_bowl.mp4        1330 x  540   (Task 2, single-step)
+            pineapple_in_cabinet.mp4     1620 x 1080   (Task 3, multi-step)
+            reactive_ours_success.mp4    1920 x 1080   (Task 4, reactive, ours)
+            reactive_theirs_fail.mp4     1920 x 1080   (Task 4, reactive, baseline)
         -->
 
-        <!-- Static (non-reactive) tasks -->
-        <h3 class="title is-5" style="margin-top:2rem;">Static Task Videos</h3>
-        <div class="video-grid video-grid--stack">
-          <div class="video-card">
-            <h4>Task 1 &mdash; Pineapple in Cabinet <span class="tag is-warning is-light">multi-step</span></h4>
-            <p>Pick up pineapple, place inside cabinet, close the door.</p>
-            <video controls muted loop playsinline preload="metadata" style="aspect-ratio: 3 / 2;">
-              <source src="static/videos/real/pineapple_in_cabinet.mp4" type="video/mp4">
-            </video>
-          </div>
-          <div class="video-card">
-            <h4>Task 2 &mdash; Swap Pineapple &amp; Cube <span class="tag is-warning is-light">multi-step</span></h4>
-            <p>Remove pineapple from bowl, then place the red cube inside.</p>
-            <video controls muted loop playsinline preload="metadata" style="aspect-ratio: 1328 / 530;">
-              <source src="static/videos/real/swap_pineapple_cube.mp4" type="video/mp4">
-            </video>
-          </div>
-          <div class="video-card">
-            <h4>Task 3 &mdash; Pineapple in Bowl <span class="tag is-info is-light">single-step</span></h4>
-            <p>Grasp a squishy pineapple and place it into a bowl.</p>
-            <video controls muted loop playsinline preload="metadata" style="aspect-ratio: 1330 / 540;">
-              <source src="static/videos/real/pineapple_in_bowl.mp4" type="video/mp4">
-            </video>
-          </div>
-        </div>
-
         <!-- Reactive task: side-by-side comparison -->
-        <h3 class="title is-5" style="margin-top:2.5rem;">Reactive Task Video</h3>
+        <h3 class="title is-5" style="margin-top:2rem;">Task 4 &mdash; Reactive Task Video</h3>
         <div class="content has-text-justified" style="margin-bottom:1rem;">
           <p>
             <strong>Pineapple on a Moving Plate.</strong> The plate is driven by a remote-controlled car,
@@ -416,6 +394,32 @@
             </video>
           </div>
         </div>
+
+        <!-- Static (non-reactive) tasks -->
+        <h3 class="title is-5" style="margin-top:2.5rem;">Static Task Videos</h3>
+        <div class="video-grid video-grid--stack">
+          <div class="video-card">
+            <h4>Task 1 &mdash; Swap Pineapple &amp; Cube <span class="tag is-warning is-light">multi-step</span></h4>
+            <p>Remove pineapple from bowl, then place the red cube inside.</p>
+            <video controls muted loop playsinline preload="metadata" style="aspect-ratio: 1328 / 530;">
+              <source src="static/videos/real/swap_pineapple_cube.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="video-card">
+            <h4>Task 2 &mdash; Pineapple in Bowl <span class="tag is-info is-light">single-step</span></h4>
+            <p>Grasp a squishy pineapple and place it into a bowl.</p>
+            <video controls muted loop playsinline preload="metadata" style="aspect-ratio: 1330 / 540;">
+              <source src="static/videos/real/pineapple_in_bowl.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="video-card">
+            <h4>Task 3 &mdash; Pineapple in Cabinet <span class="tag is-warning is-light">multi-step</span></h4>
+            <p>Pick up pineapple, place inside cabinet, close the door.</p>
+            <video controls muted loop playsinline preload="metadata" style="aspect-ratio: 3 / 2;">
+              <source src="static/videos/real/pineapple_in_cabinet.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -436,8 +440,11 @@
         <h3 class="title is-5">Real-World Robot Results</h3>
         <div class="content has-text-justified" style="margin-bottom:1rem;">
           <p>
-            Success counts out of 10 episodes on a Franka Emika Panda (zero-shot deployment).
-            IMLE-VLA outperforms &pi;<sub>0.5</sub> on every task.
+            Success counts out of 20 episodes on a Franka Emika Panda (zero-shot deployment).
+            Jerk (&times;) is the ratio of &pi;<sub>0.5</sub>&rsquo;s mean proprioceptive jerk to ours
+            (higher = smoother motion relative to the baseline).
+            IMLE-VLA outperforms &pi;<sub>0.5</sub> on every task while producing
+            2.2&times;&ndash;3.0&times; lower jerk.
           </p>
         </div>
 
@@ -448,28 +455,33 @@
                 <th>Task</th>
                 <th>IMLE-VLA (Ours) &uarr;</th>
                 <th>&pi;<sub>0.5</sub> &uarr;</th>
+                <th>Jerk (&times;) &uarr;</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>Pineapple in bowl</td>
-                <td><strong>10/10</strong></td>
-                <td>9/10</td>
+                <td><strong>19/20</strong></td>
+                <td>15/20</td>
+                <td><strong>2.7&times;</strong></td>
               </tr>
               <tr>
                 <td>Swap pineapple &amp; cube</td>
-                <td><strong>9/10</strong></td>
-                <td>8/10</td>
+                <td><strong>18/20</strong></td>
+                <td>15/20</td>
+                <td><strong>2.2&times;</strong></td>
               </tr>
               <tr>
                 <td>Pineapple in cabinet</td>
-                <td><strong>8/10</strong></td>
-                <td>7/10</td>
+                <td><strong>15/20</strong></td>
+                <td>12/20</td>
+                <td><strong>3.0&times;</strong></td>
               </tr>
               <tr>
                 <td>Pineapple on moving plate</td>
-                <td><strong>9/10</strong></td>
-                <td>6/10</td>
+                <td><strong>16/20</strong></td>
+                <td>12/20</td>
+                <td><strong>2.7&times;</strong></td>
               </tr>
             </tbody>
           </table>
