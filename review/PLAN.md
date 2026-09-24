@@ -231,3 +231,12 @@ headline "Regression vs cIMLE in simulation"
    multi-ghost composites (clip 3 part B's single tinted ghost per picture is the rule).
 6. Report: the storyboard, the phone sheet path, the mp4 path and duration, what was dropped and
    why, and any place where a caption and its picture disagree.
+
+## RULE ADDED 2026-09-24 (author's review): SOURCE PAGES ARE FIXED
+Pages taken from the author's finished clips (teaser/clip1 v4, clip2 v9B_150, clip3 v12, clip4 v8
+parts) keep THEIR design: layout, labels, sub-lines, pills and their numbers, trails, timing of
+in-page blocks. The re-cut changes only the order, the series chrome (kicker, headline position,
+LEGIBILITY sizes, dips, closings) and what the author explicitly asked for (the 3.2 two-caption
+manifold explanation; the 4.3 equation plates). Reviewers report defects only (typos, wrong numbers,
+overlaps, clipped text, seam faults); they do not propose redesigns of source pages, and the
+"no trail lines" rule does not apply to the real-robot gripper trace.

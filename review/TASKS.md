@@ -1,6 +1,9 @@
 # Review tasks (run in a cloud session on this branch)
 
 General rules for every lens
+- SOURCE PAGES ARE FIXED: pages taken from the author's finished clips keep their design (layout,
+  labels, sub-lines, pills and numbers, the gripper trails on the bowl video, in-page timing).
+  Report defects only; never propose a redesign of a source page. See PLAN.md's last section.
 - Read-only judging. Inputs: the four current version folders (storyboard.txt, phone_sheet.png,
   keyframes/*.jpg, NOTES.md), PLAN.md, LEGIBILITY_v1.md, JUDGES_*.md, paper/root.tex.
 - Do NOT re-raise anything JUDGES_*.md lists as declined or noted (in particular: the author's
