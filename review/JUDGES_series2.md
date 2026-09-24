@@ -23,7 +23,8 @@ clip3/NOTES_v7.md, clip4/NOTES_v8.md.
 - TECH 1a: the paper attributes jerk to latency and re-planning ("stop-wait-execute pauses and
   abrupt directional corrections at each replan"), not to off-manifold samples. The clips keep
   the author's dictated explanation (thin data manifold, invertible flow, samples just off it,
-  tag "off the manifold: jerky"). AUTHOR TO CONFIRM this is the argument he wants on screen.
+  tag "off the manifold: jerky"). AUTHOR CONFIRMED (2026-09-24): the manifold argument is the one wanted on screen; the paper's
+  latency explanation is wrong per the author. Reviewers must not re-raise this.
 - TECH 1b: 3.3c pill "Done · 2.5x sooner" is measured from the footage on screen; the paper's
   average is ~2x. Kept as the footage's own number. Author may prefer "2x".
 - TECH 1d: 4.2b "IMLE: learns the manifold directly" is the author's phrase; kept.
