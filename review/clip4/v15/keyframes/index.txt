@@ -1,0 +1,36 @@
+4_1_recap_end                      t=   1.47s frame    44  4_1_recap_end_f00044.png
+4_1_transition_end                 t=   1.97s frame    59  4_1_transition_end_f00059.png
+4_1_green row_end                  t=   3.47s frame   104  4_1_green row_end_f00104.png
+4_1_stat_end                       t=   5.47s frame   164  4_1_stat_end_f00164.png
+4_1_chips_end                      t=  13.23s frame   397  4_1_chips_end_f00397.png
+4_2a_pull_end                      t=  22.70s frame   681  4_2a_pull_end_f00681.png
+4_2a_share_end                     t=  29.60s frame   888  4_2a_share_end_f00888.png
+4_2b_closer_end                    t=  38.70s frame  1161  4_2b_closer_end_f01161.png
+4_3_intro_end                      t=  41.20s frame  1236  4_3_intro_end_f01236.png
+4_3_draw_end                       t=  48.33s frame  1450  4_3_draw_end_f01450.png
+4_3_match_end                      t=  54.03s frame  1621  4_3_match_end_f01621.png
+4_3_free_end                       t=  59.03s frame  1771  4_3_free_end_f01771.png
+4_3_again_end                      t=  63.17s frame  1895  4_3_again_end_f01895.png
+4_3_cover_end                      t=  68.17s frame  2045  4_3_cover_end_f02045.png
+4_3_latent_end                     t=  73.17s frame  2195  4_3_latent_end_f02195.png
+4_3_compare_end                    t=  77.30s frame  2319  4_3_compare_end_f02319.png
+4_4_left_end                       t=  78.83s frame  2365  4_4_left_end_f02365.png
+4_4_right_end                      t=  86.37s frame  2591  4_4_right_end_f02591.png
+4_4_both_end                       t=  91.67s frame  2750  4_4_both_end_f02750.png
+seam_4_1_to_4_2a_last              t=  13.23s frame   397  seam_4_1_to_4_2a_last_f00397.png
+seam_4_1_to_4_2a_dip               t=  13.37s frame   401  seam_4_1_to_4_2a_dip_f00401.png
+seam_4_1_to_4_2a_first             t=  13.47s frame   404  seam_4_1_to_4_2a_first_f00404.png
+seam_4_2a_to_4_2b_last             t=  30.10s frame   903  seam_4_2a_to_4_2b_last_f00903.png
+seam_4_2a_to_4_2b_dip              t=  30.23s frame   907  seam_4_2a_to_4_2b_dip_f00907.png
+seam_4_2a_to_4_2b_first            t=  30.33s frame   910  seam_4_2a_to_4_2b_first_f00910.png
+seam_4_2b_to_4_3_last              t=  38.70s frame  1161  seam_4_2b_to_4_3_last_f01161.png
+seam_4_2b_to_4_3_dip               t=  38.83s frame  1165  seam_4_2b_to_4_3_dip_f01165.png
+seam_4_2b_to_4_3_first             t=  38.93s frame  1168  seam_4_2b_to_4_3_first_f01168.png
+seam_4_3_to_4_4_last               t=  77.67s frame  2330  seam_4_3_to_4_4_last_f02330.png
+seam_4_3_to_4_4_dip                t=  77.90s frame  2337  seam_4_3_to_4_4_dip_f02337.png
+seam_4_3_to_4_4_first              t=  78.10s frame  2343  seam_4_3_to_4_4_first_f02343.png
+closing_fade                       t=  93.20s frame  2796  closing_fade_f02796.png
+cut strip 4.1>4.2a  20 frames around f398  cut_strip_4_1_to_4_2a.png
+cut strip 4.2a>4.2b 20 frames around f904  cut_strip_4_2a_to_4_2b.png
+cut strip 4.2b>4.3  20 frames around f1162  cut_strip_4_2b_to_4_3.png
+cut strip 4.3>4.4   20 frames around f2331  cut_strip_4_3_to_4_4.png

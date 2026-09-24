@@ -1,0 +1,24 @@
+partA_A1_action_end                      t=   4.67s frame   140  partA_A1_action_end_f00140.png
+partA_A2_chunk_end                       t=  11.47s frame   344  partA_A2_chunk_end_f00344.png
+partA_A3_obs_end                         t=  17.63s frame   529  partA_A3_obs_end_f00529.png
+partA_A4_vla_end                         t=  22.17s frame   665  partA_A4_vla_end_f00665.png
+partA_A5_traj_end                        t=  27.73s frame   832  partA_A5_traj_end_f00832.png
+partA_A6_data_end                        t=  35.13s frame  1054  partA_A6_data_end_f01054.png
+partA_A7_pair_end                        t=  39.57s frame  1187  partA_A7_pair_end_f01187.png
+partB_B1_two_routes_end                  t=  47.27s frame  1418  partB_B1_two_routes_end_f01418.png
+partB_B2_ghosts_end                      t=  53.17s frame  1595  partB_B2_ghosts_end_f01595.png
+seam_A7_last_frame_of_partA              t=  41.80s frame  1254  seam_A7_last_frame_of_partA_f01254.png
+seam_dip_middle                          t=  41.93s frame  1258  seam_dip_middle_f01258.png
+seam_first_frame_of_partB                t=  42.03s frame  1261  seam_first_frame_of_partB_f01261.png
+closing_fade_middle                      t=  54.70s frame  1641  closing_fade_middle_f01641.png
+headswap1_What_a_VLA_reads               t=  13.03s frame   391  headswap1_What_a_VLA_reads_f00391.png
+headswap2_Input_and_output               t=  18.27s frame   548  headswap2_Input_and_output_f00548.png
+headswap3_The_dataset                    t=  29.70s frame   891  headswap3_The_dataset_f00891.png
+headswap4_There_is_more_than_one         t=  42.03s frame  1261  headswap4_There_is_more_than_one_f01261.png
+headswap5_Same_condition,_differ         t=  47.57s frame  1427  headswap5_Same_condition,_differ_f01427.png
+cut_strip_dip_A7_to_B1                   20 frames (step 1) around f1255  cut_strip_dip_A7_to_B1.png
+cut_strip_headswap1_What_a_VLA_reads     20 frames (step 1) around f391  cut_strip_headswap1_What_a_VLA_reads.png
+cut_strip_headswap2_Input_and_output     20 frames (step 1) around f548  cut_strip_headswap2_Input_and_output.png
+cut_strip_headswap3_The_dataset          20 frames (step 1) around f891  cut_strip_headswap3_The_dataset.png
+cut_strip_headswap4_There_is_more_than_one 20 frames (step 1) around f1261  cut_strip_headswap4_There_is_more_than_one.png
+cut_strip_headswap5_Same_condition,_differ 20 frames (step 1) around f1427  cut_strip_headswap5_Same_condition,_differ.png

@@ -1,0 +1,204 @@
+IMLE-VLA teaser RE-CUT -- CLIP 1 "THE SETTING" / v10
+1649 frames @30 fps = 54.9667 s (= 1649/30, exact)   PLAN.md target 45-55 s
+
+source: /localscratch/kian/Desktop/openpimlepaper/IMLE-VLA/teaser/clip3/v12 (READ-ONLY), copied into src/ and edited -- see NOTES.md
+  src/parta/  = clip3/v12/parta (itself clip3/part1/v8)   beats A1..A7
+  src/partb/  = clip3/v12/partb (itself clip3/part2/v12)  beats B1, B2
+
+kicker  'IMLE-VLA · 1 / 4 · THE SETTING'  (Medium 36, tracked 7, y 52; identical in both parts)
+caption box  y 892..1044, Medium 54, max line 1618 px, 2 lines max
+headline band  y 110..250, Bold 76 anchored "ma" at y 128; six headlines, each swap a 6-frame fade-out then a 6-frame fade-in
+
+the joins:
+  part A runs with end_fade=False and is cut 0.15 s after caption 7's hold ends (41.67 + 0.15 = frame 1255); its own 1.00 s tail hold and 0.50 s fade are dropped
+  a 6-frame dip of the whole frame to the background (3 down, 3 up), with the kicker rows excluded, into part B
+    dip weights  0.844 0.500 0.156 0.156 0.500 0.844
+  part B runs with end_fade=True: its 1.0 s hold and 0.5 s fade are the clip's. No end card.
+
+global timeline (s):
+  part A      0.00 ..   41.83   (1255 frames)
+  dip        41.83 ..   42.03   (6 frames)
+  part B     42.03 ..   54.97   (388 frames, whole)
+
+the six headlines:
+  #            in      out  headline                                       ink
+  1          0.00    13.04  What a VLA outputs                              677 px  x  621..1298  (hard in, 6 f out)
+  2         13.04    18.26  What a VLA reads                                607 px  x  657..1264  (6 f in, 6 f out)
+  3         18.26    29.70  Input and output                                562 px  x  679..1241  (6 f in, 6 f out)
+  4         29.70    41.83  The dataset                                     406 px  x  757..1163  (6 f in, dip out)
+  5         42.03    47.57  There is more than one way to complete a task  1593 px  x  164..1757  (hard in, 6 f out)
+  6         47.57    54.97  Same condition, different data                 1033 px  x  443..1476  (6 f in, end out)
+
+beats, global times:
+  part    beat                   in      out  headline                                       caption
+  part A  A1 action            0.00     6.52  What a VLA outputs                             An action is one step of robot motion: a vector of D numbers.
+  part A  A2 chunk             6.52    13.04  What a VLA outputs                             An action chunk stacks the next C steps into one matrix, predicted together.
+  part A  A3 obs              13.04    18.26  What a VLA reads                               The observation: two camera views and a language instruction.
+  part A  A4 vla              18.26    23.58  Input and output                               The action head turns the encoded observation into a chunk.
+  part A  A5 traj             23.58    29.70  Input and output                               The robot executes the chunk’s first steps, then looks again: a trajectory.
+  part A  A6 data             29.70    35.77  The dataset                                    A dataset is many such trajectories, collected by teleoperation.
+  part A  A7 pair             35.77    41.83  The dataset                                    Each observation, the condition, is paired with one action chunk, the data.
+  dip     6 frames            41.83    42.03  The dataset                                    (no caption)
+  part B  B1 two routes       42.03    47.57  There is more than one way to complete a task  (no caption box; the headline carries the page)
+  part B  B2 top-view ghosts    47.57    54.97  Same condition, different data                 Same observation, two valid action chunks: two modes of a multimodal distribution.
+
+captions (in = box starts to fade in, up = fully drawn, out = box gone):
+  part    beat              in      up     out  words  lines   widest    hold    rule  text
+  part A  A1 action       0.00    0.30    6.52     13      1   1469 px    6.00    6.00  An action is one step of robot motion: a vector of D numbers.
+  part A  A2 chunk        6.52    6.82   13.04     13      2    965 px    6.00    6.00  An action chunk stacks the next C steps into one matrix, predicted together.
+  part A  A3 obs         13.04   13.34   18.26      9      1   1523 px    4.70    4.40  The observation: two camera views and a language instruction.
+  part A  A4 vla         18.26   18.56   23.58     10      1   1460 px    4.80    4.80  The action head turns the encoded observation into a chunk.
+  part A  A5 traj        23.58   23.88   29.70     12      2    868 px    5.60    5.60  The robot executes the chunk’s first steps, then looks again: a trajectory.
+  part A  A6 data        29.70   30.00   35.77      9      1   1514 px    5.55    4.40  A dataset is many such trajectories, collected by teleoperation.
+  part A  A7 pair        35.77   36.07   41.89     12      2    931 px    5.60    5.60  Each observation, the condition, is paired with one action chunk, the data.
+  part B  B2             47.57   47.87   54.97     12      2   1044 px    5.90    5.60  Same observation, two valid action chunks: two modes of a multimodal distribution.
+  part B beat B1 has NO caption box: the headline carries the page, as in the source (a page without a caption is the absence of a key, not an empty string).
+
+element times:
+    0.00  (A1 action  +0.00)  primary camera card fades in
+    1.40  (A1 action  +1.40)  the D boxes of the vector stack top to bottom, 0.30 s apart, the last at +3.50 (v3: was 0.20; source 0.09)
+    4.30  (A1 action  +4.30)  the "action a(t)" label and the D bracket + "D = arm + gripper"  (v3: was 3.60; source 2.50).  v3 also drops '"one timestep t"' from this line: that label is gone in part1/v8 and was never drawn here
+    6.52  (A2 chunk  +0.00)  the card shrinks/slides to thumbnail t+0; the vector slides under it
+    7.42  (A2 chunk  +0.90)  thumbnails t+1 .. t+5 slide in from the right, 0.30 s apart, the last at +2.10  (v4: was 0.20 s apart)
+    9.12  (A2 chunk  +2.60)  the column duplicates rightward, one per thumbnail, 0.25 s apart, with its tick  (v4: was +2.30, 0.15 s apart)
+   10.82  (A2 chunk  +4.30)  "action chunk  A" / "C steps x D dims", the rule + "C future steps"  (v4: was 3.70)
+   12.84  (A2 chunk  +6.32)  v4 (note 2): "C steps x D dims" alone fades out over the 6 frames that swap headline 1 -> 2, so it is gone before beat 3 slides the grid through where it sat
+   13.04  (A3 obs  +0.00)  the matrix shrinks and moves to the far right (its label rises clear first)
+   13.74  (A3 obs  +0.70)  the primary card slides in from the left
+   14.84  (A3 obs  +1.80)  the wrist card slides in
+   15.94  (A3 obs  +2.90)  the instruction pill slides in
+   17.04  (A3 obs  +4.00)  the bracket + "observation  o_t"
+   18.26  (A4 vla  +0.00)  the VLA box grows in the middle
+   19.86  (A4 vla  +1.60)  the input arrow draws left to right into the box  (v6: was 1.20)
+   21.51  (A4 vla  +3.25)  the output arrow draws into the matrix  (v6: was 2.30; the settled tail under the caption goes 2.45 -> 1.50 s)
+   23.58  (A5 traj  +0.00)  the schematic shrinks into station 1 (the VLA box fades out)
+   24.68  (A5 traj  +1.10)  stations 2, 3, 4 march in from the right, 0.60 s apart, at +1.10 / +1.70 / +2.30 (t = 4 / 8 / 12)  (v3: was 0.35 s apart)
+   27.08  (A5 traj  +3.50)  the rule + "one trajectory  tau"  (v3: was 2.60, i.e. 0.70 s after the last station settles either way)
+   29.70  (A6 data  +0.00)  the station row shrinks to row tau_1 at the top
+   30.80  (A6 data  +1.10)  rows tau_2 .. tau_5 drop in, 0.30 s apart; the dataset bracket grows
+   32.30  (A6 data  +2.60)  the counter appears reading 5 and ticks upward
+   33.30  (A6 data  +3.60)  the five rows scale down and travel to the beat-6b layout (0.90 s, geometric)
+   34.25  (A6 data  +4.55)  only then: the further rows fade in below, the bracket grows to the whole stack and the counter reaches 428
+   35.77  (A7 pair  +0.00)  the stack dims to a ghost; the bracket and counter fade
+   36.77  (A7 pair  +1.00)  one row's first pair pulls forward and grows into card -> arrow -> matrix over 2.60 s (v7: was 1.60; source 0.80); its two labels at +3.30, 0.30 s before it settles -- the last thing the beat does
+   39.37  (A7 pair  +3.60)  v5 (note 3): nothing else.  The in-panel tag "one observation -> one action chunk" that v2-v4 drew at +3.60 is GONE -- caption 7 says it. With the slower pull (v7) the picture is settled 2.00 s before the caption leaves, not 3.00 s
+   42.03  (B p1_in)  part B opens: both panels on their first frame, the floating pill, name plates and "simulation" tags (no caption box)
+   42.63  (B play_in)  both routes start playing at 2x; each panel's "2x speed" tag fades in with the footage
+   45.53  (B ok_left)  the left route finishes: its "success" chip
+   46.47  (B play_out)  the footage ends
+   46.47  (B ok_right)  the right route finishes: its "success" chip
+   47.57  (B p1_out)  page 1 ends / page 2 begins (headline 5 -> 6 cross-fade)
+   47.57  (B p2_in)  page 2 opens: page 1's overlays start to clear, the panels do not move yet
+   47.57  (B clear_in)  the two "success" chips, the two "2x speed" tags and the floating pill start to fade out (v3)
+   47.87  (B clear_out)  ... and are all gone -- nothing from page 1 is on screen (v3)
+   47.87  (B swap_in)  only now: the frozen end frames cross-fade in place to the top-view ghost pictures
+   48.27  (B swap_out)  the cross-fade ends
+   47.57  (B pill_fade_in)  the floating pill starts to fade out (= clear_in)
+   47.87  (B pill_fade_out)  the floating pill is gone (= clear_out)
+   48.27  (B shrink_in)  the two pictures shrink and move right
+   49.07  (B shrink_out)  they settle
+   49.07  (B card_in)  the shared observation card fades in
+   50.07  (B a1_in)  the arrow to the left (teal) route
+   51.07  (B a2_in)  the arrow to the right (amber) route
+   53.47  (B p2_out)  page 2 is complete
+   54.47  (B hold_out)  the 1.0 s closing hold ends
+   54.97  (B end)  the 0.5 s fade ends -- no end card
+
+assertion table:
+  row                                                                      measured                                                                       
+  kicker string identical in both parts, and the plan's                    A 'IMLE-VLA · 1 / 4 · THE SETTING' | B 'IMLE-VLA · 1 / 4 · THE SETTING'        OK
+  kicker pixels identical on every sampled frame before the closing fade   753 frames (every 3-th of 0..1633 + all within 1.0 s of the dip and the 5 swaps); 0 differ (worst 0 at fNone) OK
+  caption box y range identical in both parts                              A 892..1044 | B 892..1044                                                      OK
+  caption type identical (Medium 54)                                       A 54 | B 54                                                                    OK
+  caption max line width identical, and the series rule (1618 px)          A 1618 px | B 1618 px  (v5: was 1728 in both; 1618 + 2 x 55 px of plate pad = 1728 centred on x 960 = the panel columns x 96..1824) OK
+  caption padding, ONE line (ink -> box, l/r and t/b)                      A 55.0/55.0 57.0/57.0 | B 55.0/55.0 57.0/57.0  (probe where a part has no 1-line caption) OK
+  caption padding, TWO lines (ink -> box, l/r and t/b)                     A 55.0/55.0 25.0/25.0 | B 55.0/55.0 25.0/25.0                                  OK
+  two-line caption leading identical (64 px)                               A 64 px | B 64 px                                                              OK
+  every caption <= 2 lines and every line <= 1618 px                       8 captions; widest line 1523 px (part A obs); most lines 2                     OK
+  series caption rule: every caption LINE <= 1618 px of ink, and its plate stays inside the panel columns x 96..1824 8 captions; widest line 1523 px (part A obs); plate x 143..1776 over all of them; 0 violation(s) OK
+  part B page 1 has NO caption key (PLAN.md beat 8: the headline carries it) CAP keys [2]; page 1 absent                                                    OK
+  caption 9 ("Same observation...") leads the observation card by <= 1.2 s caption fully drawn 5.83 s, card_in 7.03 s, lead 1.20 s (v1: 2.00 s; A7 leads its card by 1.00 s) OK
+  caption 9 ends on the plan's point and carries the series words ("action chunks", "modes", "multimodal distribution") 12 words, 2 lines, widest 1044 px: 'Same observation, two valid action chunks: two modes of a multimodal distribution.' OK
+  no page-1 overlay (success chip, speed tag, floating pill) is drawn once the content cross-fade has started clear 5.53..5.83 s, cross-fade 5.83..6.23 s; 0 of 388 part-B frames bad (worst alpha 0.000 at part-B fNone) OK
+  the right route's "success" chip is fully drawn for >= 0.80 s before anything moves fully drawn 4.73 s, page 1 ends 5.53 s, clear starts 5.53 s: 0.80 s            OK
+  caption 4 names the action head, the word clips 2-4 use (v5 note 1), and what it outputs (v7 note 1: "a chunk", since A2 defines the action chunk) 10 words, 1 line(s), widest 1460 px: 'The action head turns the encoded observation into a chunk.' OK
+  A7 draws no in-panel tag; caption 7 carries it (v5, note 3)              beat_pair calls D.beat7_tag: no; the design geometry the frozen reports measure is still there: yes; A7 anim 3.60 s under a 5.60 s hold (settled tail 2.00 s) OK
+  LEGIBILITY_v1.md: status chips Medium 52 / h 78, name plates Medium 48 / h 70 chip 52/78 px box 254x78 | plate 48/70 px box 227x70 (left) 255x70 (right); decoration tags unchanged at 34/50 OK
+  ... and nothing they touch overlaps: the plate rises off the tag row only where the picture is small lift 48 px on a 505 px ghost picture, 0 px on a 900 px panel; overlap_report 0 of 388 frames OK
+  the lifted name plate clears the "top view" tag by >= 12 px wherever the two overlap horizontally (v10 note 1) worst clearance 12.0 px (part-B f197, right route, 13 px of horizontal overlap) over 191 drawn pairs; v9 lifted a constant 44 px and dipped to 11.2 px mid-shrink OK
+  the reserved model palette (green/coral) is nowhere in clip 1; the routes are the plan's teal/amber left (78, 214, 199) = TEAL, right (250, 174, 62) = AMBER; dE76 to green (46,204,143) / coral (242,107,91) = 27 / 47; "GREEN"/"CORAL" tokens in src/: 0 OK
+  every headline's ink <= 1728 px at Bold 76 (PLAN.md rule 4)              6 headlines; widest 1593 px ('There is more than one way to complete a task'); the caption rule is 1618 px and is asserted separately OK
+  headline ink clears part A's content band (BAND_TOP 254) and the kicker (ink bottom y 89) ink y 141..216, band y 110..250                                                OK
+  no two headlines on screen at once -- STRUCTURAL (alpha_out * alpha_in == 0) all 1649 frames checked; 0 with two live headlines (first fNone)               OK
+  no two headlines on screen at once -- PIXEL (band ink, all 6 seam windows) 228 frames in 6 windows; 0 bad                                                 OK
+  the headline draw touches nothing outside rows 110..250                  6 probe frames; 0 differ (worst 0)                                             OK
+  nothing touches the frame edge in any SETTLED state (x 24..1896, y 24..1056) union over the 11 beat end states, the two dip edges and the two page ends: x 48..1872, y 60..1045 OK
+  ... and every frame that does reach it is mid-animation (a source slide-in) 4 of 327 sampled frames reach the edge (f415 obs, f450 obs, f780 traj, f785 traj); 0 of them are settled OK
+  background identical in both parts                                       A (11, 15, 20) | B (11, 15, 20)                                                OK
+  the dip is symmetric, 3 down / 3 up                                      0.844 0.500 0.156 0.156 0.500 0.844                                            OK
+  the two dip edge frames carry the same kicker pixels                     max channel diff 0 over x 595..1324, y 40..104                                 OK
+  the A8 (fan) and A9 (multi) beats are gone from part A                   part A beats: action, chunk, obs, vla, traj, data, pair                        OK
+  beat 2's "C steps x D dims" sublabel is gone before beat 3's grid slides through where it sat the morph covers its ink box (x 1338..1610, y 623..655) on 18 of 22 frames of beat 3; sublabel alpha there 0.000 (v3 faded it across the morph: up to 0.62) OK
+  ... and it leaves with headline 1, over the joiner's own 6-frame swap window sublabel fades 12.84 .. 13.04 s; headline 1 fades 12.84 .. 13.04 s; beat 3 starts 13.04 s OK
+  part A's caption hold rule is the plan's (150 wpm)                       WPM 150.0; rule = max(1.8, 0.8 + words/2.5) s; part B hold_for(12 words) = 5.60 s OK
+
+length:
+  1649 frames = 54.967 s -- INSIDE PLAN.md's 45-55 s target (v1 58.467 s, v2 54.400 s, v3 54.967 s, v4 54.967 s).  Every beat of the plan is still here.
+  v5 and v6 sat 0.367 s over the ceiling; v7's caption 4 ("a chunk", 10 words) is the 0.40 s that brings it back, and the 45-55 s check is a hard assert again (v6 note 3), so this version could not have been written if it were still over.
+  applied in v2 (both round-1 reviews):
+    caption 2: "predicted all at once" -> "predicted together" (15 -> 13 words) -0.80 s   also drops the claim PLAN.md bans in clip 1
+    caption 5: 14 -> 12 words, the same sentence                           -0.80 s   beat 5 sat 3.35 s on its settled picture
+    part A tail after the last caption: CUT_AFTER_CAP 0.60 -> 0.30 s       -0.30 s   v3 takes it to 0.15 s, clip 4 v8's number
+    part B PLAY_SPEED 1.5 -> 2.0                                           -1.27 s   the speed tag is drawn from the constant, so it re-labels itself to "2x speed"
+    part B play_in 1.00 -> 0.60 s                                          -0.40 s   the lead-in before the footage starts
+    part B p1_out pad 0.80 -> 0.50 s                                       -0.30 s   REVERSED in v3 (note 3): the second success chip gets its 0.80 s back
+    part B page-2 intro: pill fades at swap_out, shrink_in p2_in+1.10 -> +0.70, shrink_dur 1.20 -> 0.80 -0.20 s   card_in +2.30 -> +1.50, so caption 9 leads the observation card by 1.20 s instead of 2.00 s; page 2 is then caption-driven, which also gives 0.20 s back
+    beats 1 and 7 re-timed inside their own holds (v2)                     -0.00 s   A1's D boxes 0.20 s apart and its label at +3.60; A7's pull-forward 1.60 s and its tag at +3.60 -- no length change, 0.80 s less frozen picture in each
+    TOTAL v2                                                               -4.07 s   -> 54.400 s (v2)
+  applied in v3 (clip1/NOTES_v3.md):
+    1  caption 9: 12 -> 13 words, ending on "a multimodal distribution"    +0.40 s   page 2 is caption-driven, so the page grows by exactly the extra hold
+    2  the page-1 overlays clear BEFORE the content cross-fade (0.30 s window) +0.00 s   the window is taken out of the page-2 intro: swap_in +0.30 and pill_fade_in -0.40 cancel, shrink_in / card_in are v2's to the frame
+    3  part B p1_out pad 0.50 -> 0.80 s on the second "success" chip       +0.30 s   restores the source's own assert_reading() rule, which v2 had broken
+       ... funded from part A tail CUT_AFTER_CAP 0.30 -> 0.15 s            -0.13 s   clip 4 v8's number; 4 frames of air on the A7 -> B1 seam
+    4  A5: stations 0.60 s apart, rule + "one trajectory tau" at +3.50 (anim 3.95) +0.00 s   the hold is the 12-word caption's 5.60 s either way; the frozen tail under it goes 2.85 -> 1.65 s
+    5  A1: D boxes 0.30 s apart (last at +3.50), label at +4.30 (anim 4.45) +0.00 s   the hold is the 13-word caption's 6.00 s either way; the frozen tail goes 2.55 -> 1.55 s
+    TOTAL v3                                                               +0.57 s   -> 54.967 s (v3)
+  applied in v4 (clip1/NOTES_v4.md), both re-timing:
+    1  A2: thumbnails 0.30 s apart (last at +2.10), columns and ticks from +2.60 at 0.25 s, label / rule at +4.30 (anim 4.75) +0.00 s   the hold is the 13-word caption's 6.00 s either way; the frozen tail under it goes 2.15 -> 1.25 s
+    2  the "C steps x D dims" sublabel leaves with headline 1, at the END of beat 2 +0.00 s   v3 faded it (alpha 0.62..0.01) while beat 3's grid morph slid through its ink box -- the ghost on the t+5 column; asserted frame by frame now
+    TOTAL v4                                                               +0.00 s   -> 54.967 s (v4)
+  applied in v5 (clip1/NOTES_v5.md):
+    1  caption 4: 9 -> 11 words, naming the action head                    +0.80 s   the hold is the rule's: 0.8 + 11/2.5 = 5.20 s (was 4.40).  Beat 4's own animation is 2.75 s, so all of it is reading time
+    2  caption 9: 13 -> 12 words, "two modes of a multimodal distribution" -0.40 s   page 2 is caption-driven, so the page is exactly the shorter hold
+    3  A7 draws no in-panel tag                                            +0.00 s   the hold is the 12-word caption's 5.60 s either way; the beat's last event moves from +3.60 to +2.30, so the settled tail goes 1.60 -> 3.00 s
+    4  the "2x speed" tags listed at play_in, not p1_in                    +0.00 s   storyboard truth only; no frame changes
+    TOTAL v5                                                               +0.40 s   -> 55.367 s (v5)
+  applied in v6 (clip1/NOTES_v6.md):
+    1  caption 4: "that observation" -> "the observation"                  +0.00 s   STILL 11 words ("the" replaces "that"), so the hold stays 5.20 s -- the note expected 10 words and -0.40 s.  1543 px instead of 1561
+    2  A4 spread: box +0.00, input arrow +1.60, output arrow +3.25 (anim 3.70) +0.00 s   the hold is the caption's 5.20 s either way; the settled tail goes 2.45 -> 1.50 s
+    3  the 45-55 s check is hard again                                     +0.00 s   and it fails at 55.367 s; the stills are written before the check runs
+    TOTAL v6                                                               +0.00 s   -> 55.367 s (v6)
+  applied in v7 (clip1/NOTES_v7.md):
+    1  caption 4: "an action chunk" -> "a chunk" (11 -> 10 words)          -0.40 s   hold 5.20 -> 4.80 s; 1350 px on one line (v6: 1543), plate x 230..1690.  This is the 0.40 s v6 was meant to find
+    2  A7: the pull-forward 1.60 -> 2.60 s, its labels at +3.30 (anim 3.60) +0.00 s   the hold is the 12-word caption's 5.60 s either way; the settled tail goes 3.00 -> 2.00 s
+    TOTAL v7                                                               -0.40 s   -> 54.967 s (v7)
+  applied in v8 (clip1/NOTES_v8.md):
+    1  caption 4: "maps the observation" -> "turns the encoded observation into" +0.00 s   ten words either way, so the hold is the same 4.80 s; 1460 px on one line (v7: 1350).  It is the picture's own claim: the box says "VLM backbone + action head"
+    TOTAL v8                                                               +0.00 s   -> 54.967 s (v8)
+  applied in v9 (clip1/NOTES_v9.md + LEGIBILITY_v1.md), sizes only:
+    1  status chips "success" x2: Medium 40 / h 60 -> Medium 52 / h 78 (pad 24 -> 31) +0.00 s   width 190 -> 254 px; colours, corner radius and the route accent unchanged
+    2  name plates "left route" / "right route": Medium 34 / h 50 -> Medium 48 / h 70 +0.00 s   width 168 / 189 -> 227 / 255 px; colours and the accent bar unchanged
+    3  the plate rises 44 px off the tag row on the 505 px ghost pictures only +0.00 s   the minimum move that clears "top view" (19 px of overlap on the right picture); 0 px on a full panel, interpolated through the shrink
+    TOTAL v9                                                               +0.00 s   -> 54.967 s (v9)
+  applied in v10 (clip1/NOTES_v10.md), QA:
+    1  the page-2 plate lift: a constant 44 px -> "tag height + 12 px of clear space" +0.00 s   48 px at the ghost size; the worst clearance where the two overlap horizontally goes 11.2 -> 12.0 px and is asserted
+    2  caption 5: "chunk's" -> "chunk’s" (U+2019)                          +0.00 s   same words, same 5.60 s hold, 858 / 868 px on two lines
+    TOTAL v10                                                              +0.00 s   -> 54.967 s
+  still available, nothing applied:
+    part B p1_out pad 0.80 -> 0.50 s                                        0.30 s   REVERSES v4's note 3 (and the source's own assert_reading rule): the second "success" chip would be fully drawn for 0.50 s, not 0.80 s
+    part B play_in 0.60 -> 0.40 s                                           0.20 s   the footage would start 0.40 s after the page appears; the panels barely register as holding the same first frame
+    part A tail CUT_AFTER_CAP 0.15 -> 0.00 s                                0.15 s   caption 7's 0.22 s fade-out would then happen ENTIRELY inside the dip (today 0.06 s of it does)
+    caption 4 or caption 9 in fewer words                                   0.40 s   the series review's own wording -- a reviewer decision, not a builder's
+    part B a1_in / a2_in gaps, and the tail after the second arrow          0.00 s   page 2 is caption-driven, so moving the arrows earlier saves NOTHING
+
+dropped from clip 3 (PLAN.md): A8 "fan" and A9 "multi".  Their draw code, the FAN layout and TAG_FAN stay in src/parta/build.py (fan_chip_geom() is read by padding_report); only the two BEATS entries are gone.

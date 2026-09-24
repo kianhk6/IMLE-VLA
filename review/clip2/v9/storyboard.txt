@@ -1,0 +1,232 @@
+IMLE-VLA teaser RE-CUT -- CLIP 2 of 4, "WHY REGRESSION FAILS"   (clip2/v9)
+1951 frames @30 fps = 65.0333 s (= 1951/30, exact).  PLAN.md target 65..75 s.
+canvas 1920x1080, background (11, 15, 20), kicker 'IMLE-VLA · 2 / 4 · WHY REGRESSION FAILS'
+
+parts, copied into src/ and edited (NOTES.md lists every edit):
+  src/parta  frozen from teaser/clip4/v8/parta  (frozen there from teaser/clip4/part1/v9)
+  src/partc  frozen from teaser/clip4/v8/partc  (frozen there from teaser/clip4/part3/v7)
+
+the joins:
+  part A runs with end_fade=False and is cut 0.15 s after its last caption has finished leaving (50.340 s + 0.15 s = frame 1515)
+  the headline changes INSIDE part A, at the start of beat 6 'conv' (frame 1122 = 37.40 s): 'The simplest action head: regression' fades OUT over 6 frames, then 'Regression averages the modes' fades IN over 6 frames
+    -- never superimposed (asserted on the frame between the two fades, where the band y 110..254 is pure background), inside the band while the
+    content plays straight through.  The kicker sits above y 110 and is identical on every sampled frame of the clip before the closing fade.
+  a 6-frame dip of the whole frame to the background (3 down, 3 up) into part C; the kicker rows are excluded from the dip
+  part C runs with end_fade=True: its 1.00 s closing hold and 0.50 s fade are the clip's
+    -- and (v8) the LAST caption is still fully drawn on both: it has no fade-out of its own, so it holds from 57.13 s to the last frame and goes down
+    with the picture.  That is clip 1's series rule (its caption 9 runs to the end the same way); dropping the 7-frame caption fade-out is the
+    whole of this version's length change.
+
+global timeline (s):
+  part A      0.00 ..   50.50   (1515 frames; its own 0.97 s tail and fade are dropped)
+  dip        50.50 ..   50.70   (6 frames)
+  part C     50.70 ..   65.03   (430 frames, whole)
+
+the headline over the clip:
+     0.00 ..   37.40  'The simplest action head: regression'
+    37.40 ..   50.50  'Regression averages the modes'
+    50.70 ..   65.03  'The same failure, in simulation'  (with the sub-line 'a toy generator trained by regression')
+
+beats and captions, global times:
+  part    beat            in      out  words  caption
+  part A  data          0.00     6.52     13  Last clip: one observation, two valid chunks. Here, a 2-D toy with four.
+  part A  obs           6.52    14.14     12  Four pairs, one colour each: one observation, four valid actions, four modes.
+  part A  gen          14.14    21.06     14  The action head is a generator: observation and noise z in, a sample out.
+  part A  reg          21.06    30.48     14  Regression: one sample per pair, penalized by its squared distance to its own action.
+  part A  feat         30.48    37.40     14  A sample near another valid mode is still pulled back to its own action.
+  part A  conv         37.40    45.02     14  The loss is minimized at their mean, so regression converges there, for any z.
+  part A  mean         45.02    50.34     10  The mean matches none of the modes: an invalid action.
+  part C  setup        50.70    56.83     12  Three demonstrations each put a different bottle on the plate: three modes.
+  part C  left         56.83    63.53     14  Regression outputs their average: the gripper closes on the empty plate and grabs nothing.
+
+the caption box itself (both parts, Medium 54, y 892..1044, <= 1618 px, 2 lines max, leading 64 px):
+  A1  in   0.00  fully visible   0.30 ..   6.30  out by   6.52   13 words
+  A2  in   6.52  fully visible   6.82 ..  13.92  out by  14.14   12 words
+  A3  in  14.14  fully visible  14.44 ..  20.84  out by  21.06   14 words
+  A4  in  21.06  fully visible  21.36 ..  30.26  out by  30.48   14 words
+  A5  in  30.48  fully visible  30.78 ..  37.18  out by  37.40   14 words
+  A6  in  37.40  fully visible  37.70 ..  44.80  out by  45.02   14 words
+  A7  in  45.02  fully visible  45.32 ..  50.12  out by  50.34   10 words
+  C1  in  50.70  fully visible  51.00 ..  56.60  out by  56.83   12 words
+  C2  in  56.83  fully visible  57.13 ..  65.03  NEVER LEAVES   14 words   (v8: it holds through the 1.00 s closing hold and the 0.50 s fade to black, and goes down with the picture)
+
+element times, part A (seconds from the beat start; the beat's global in is above):
+  data  + 0.00 s  (  0.00 s)  in       the actions panel fades in with its grid, horizontally CENTRED on the canvas
+  data  + 1.20 s  (  1.20 s)  in       the four ground-truth actions arrive one after another, 0.85 s apart, each a filled circle in its pair colour
+  obs   + 0.00 s  (  6.52 s)  compose  the observations panel fades in on the left while the actions panel slides from the canvas centre to its final place over 0.50 s (the data points ride with it); the fan of four coloured triangles arrives 0.06 s apart
+  obs   + 1.00 s  (  7.52 s)  in       the note "same observation, 4 pairs"
+  obs   + 2.50 s  (  9.02 s)  motion   THE FOUR PAIRS, one after another, 1.00 s each: the triangle (with chrome4's ring) and the data point of pair i light together while the other three dim to 0.45, and a thin DASHED CONNECTOR in that pair's colour flashes from the triangle, across the gap between the panels (clear of where the G box will be), to the data point; it holds 0.70 s, drops to a faint trace, and all four traces clear 0.30 s before the beat ends
+  gen   + 0.00 s  ( 14.14 s)  in       the noise panel with the cloud of z (the first two coordinates)
+  gen   + 1.40 s  ( 15.54 s)  in       the generator box, its label and the three arrows
+  gen   + 3.00 s  ( 17.14 s)  motion   ONE z lights up, travels through G and lands as ONE star, neutral white-steel: nothing here says a different z would land anywhere else
+  reg   + 0.00 s  ( 21.06 s)  motion*  THE TEAL PAIR IN FULL: beat 3's neutral sample and its z fade out, the teal triangle lights with its ring, a z lights in the noise panel, travels through G, and a TEAL star lands at its scripted position; its teal link then draws from the star to the teal action with the tag "loss" riding at the link's midpoint
+  reg   + 5.60 s  ( 26.66 s)  motion*  the amber, violet and rose pairs the same way but quicker, 0.75 s each: ring, z, travel, star, link, and that pair's own "loss" tag on its own link -- one tag on screen at a time
+  feat  + 0.00 s  ( 30.48 s)  in       the featured case is isolated: the teal sample, its own data point and its link stay lit, and so does the ROSE mode it sits near; the two uninvolved modes and the other three samples dim
+  feat  + 1.10 s  ( 31.58 s)  in       the tag 'near a valid mode, still penalized' on a leader to the star
+  feat  + 2.60 s  ( 33.08 s)  motion*  the sample slides 0.55 of the way along its OWN link toward its OWN data point, holds, and slides back
+  feat  + 5.00 s  ( 35.48 s)  in       the whole pool comes back at full brightness
+  conv  + 0.80 s  ( 38.20 s)  cut      the four links of beat 4/5 fade out and 10 fresh pools of four coloured samples take over, each closer to the mean than the last and each shown faster; the last is a 10 px rosette that slides onto the mean over 0.40 s, and the four then cross-fade over 0.30 s into ONE neutral sample (238, 241, 246) -- every pair now gets the same output, so it belongs to none of them
+  conv  + 3.60 s  ( 41.00 s)  in       the cloud of z greys and the note "z ignored" appears across it
+  conv  + 4.60 s  ( 42.00 s)  motion   three different z light up one after another, 0.60 s apart, and all land on that one neutral sample with a pulse
+  mean  + 0.00 s  ( 45.02 s)  cross    the white X marker and its tag "mean" (v4: 34 px lower than the source put it, clear of the rose link) fade IN over 0.30 s while the ONE neutral sample beat 6 left on the mean fades OUT over the same 0.30 s (v3: same colour, same size, so on top of each other they read as a smudge); the three lit z fade out with it
+  mean  + 2.30 s  ( 47.32 s)  in       dashed links from the mean to the four data points, each in that pair's colour, each starting 12 px clear of the marker's ink (33.2 .. 38.0 px from the mean itself)
+
+element times, part C (frames from the beat start):
+  setup +   0 f   ( 50.70 s)  the panel fades in on the start frame with its simulation tag; the name plate stays out until the playback starts
+  setup +  18 f   ( 51.30 s)  the panel shows demonstration a as ONE tinted ghost cutout AT ITS OWN BOTTLE (cutout 0, source frame 91, its grasp), 1.2 s, with the tag "mode 1" beside that bottle
+  setup +  63 f   ( 52.80 s)  it is removed, then demonstration b at ITS bottle (cutout 0, frame 91) with "mode 2"
+  setup + 108 f   ( 54.30 s)  it is removed, then demonstration c at ITS bottle (cutout 0, frame 91) with "mode 3"
+  setup +  96 f   ( 53.90 s)  the tag "plate"
+  setup + 150 f   ( 55.70 s)  the tags fade out, before any playback
+  left  +  24 f   ( 57.63 s)  the panel plays, phase by phase (approach 4x, descend 4x, close 4x, lift 4x, carry 8x, lower 16x, release 4x, retreat 12x), in 99 output frames = 3.30 s; its speed tag fades in
+  left  +  47 f   ( 58.40 s)  the frame where the gripper closes (record step 91) is held for 1.0 s with the chip "closes on nothing" -- the only hold in the beat
+  left  + 153 f   ( 61.93 s)  the chip "task failed"; the panel then stays on that frame at full brightness for the closing hold and the fade
+
+ONE PANEL IN PART C (PLAN.md: cIMLE has not been introduced yet).
+  page3.PAN_X becomes dict(left=510) -- a LAYOUT variant, not a crop: PAN_W/PAN_H/PAN_Y are untouched, so the panel keeps its size, its corner
+  radius, its plate / tag / chip heights and baselines, and the footage cache key (which hashes the panel SIZE) is unchanged -- no re-decode, no rescale.
+  Everything inside the panel is panel-relative, so the three "mode k" tags, the "plate" tag, the chips and the tag row move with it unchanged.
+  The cIMLE take is not decoded, not named and not drawn: the zero-ink row below is the pixel form of that, and two text rows are the rest of it.
+  NOTE: with one panel, the source's sibling rule (a group of fewer than two members is skipped) would stop checking the plate, the sim tag, the speed
+  tag and the object tag.  sibling_report() now measures each single-member kind against its own spec height instead; see src/partc/build.py.
+
+WHAT WAS DROPPED, and why:
+  part C beats 'right' (the cIMLE rollout, 276 f) and 'both' (30 f)  -- clip 4's: this clip has not introduced cIMLE.
+  part A drops no BEAT: each of its beats starts from the previous one's end layout, so only its first or last beat could be dropped at all.
+  it does drop one in-panel note, "one sample per pair" (v2) -- see CHANGED IN v2 below; its geometry is kept, so nothing else moved.
+
+WORDS PER MINUTE.  PLAN.md's global rule, max(1.8, 0.8 + words / 2.5) s = 150 wpm, is now what both parts compute with (src/parta/chrome4.py,
+  src/partc/chrome4.py -- the two stay byte-identical -- and src/partc/build.py).  v1 kept the sources' 130 wpm and ran 7.1 s longer.
+  Eight of the nine holds shorten (beat obs was animation-bound either way); beats obs, reg and conv are animation-bound, hold = anim + 0.30.
+  Total 65.03 s, inside PLAN's 65-75 s.
+
+CHANGED IN v9 (clip2/NOTES_v9.md -- LEGIBILITY_v1.md, series round 6).  SIZES ONLY: no text, no timing, no colour, no new mark.
+  Booth screen: a 1080p line needs about 28 px of x-height to be read from 2-3 m.  Headlines (Bold 76) and captions (Medium 54) already passed; the
+  classes below carry information and did not.  Part C is the only page in this clip that has any of them.
+    status chips  "task failed" / "closes on nothing"   Medium 40 on a 60 px chip  ->  Medium 52 on a 78 px chip   (pad 31, the v8 pad:size ratio kept;
+                                                         the chip is a round container, so its corner radius is h / 2 and follows by itself)
+    name plate    "regression"                          Medium 34 on a 50 px plate ->  Medium 48 on a 70 px plate  (pad 23, same ratio; the plate is a rect,
+                                                         radius min(10, h / 3) = 10 before and after, so the corner is untouched)
+    sub-line      'a toy generator trained by regression'    Medium 34                  ->  Medium 42, in GREY (176, 186, 200), the same y anchor (214)
+  COLOURS ARE UNCHANGED: chip fill (16, 22, 28), chip outline = its own ink, plate fill (14, 19, 26) / stroke (52, 64, 78) / accent (120, 130, 145).
+  UNCHANGED CLASSES (the spec leaves them alone): the kicker, the "simulation" and "sped up" tags, the "mode k" / "plate" object tags and the
+    instruction pill -- all still Medium 34 / 34 / 34 / 32 in their own colours.
+  WHAT MOVED BECAUSE OF IT, and nothing else did:
+    - the chips keep their top-left anchor (panel y + 16): the chip is taller, so its bottom goes 420 -> 438.  Both chips share one baseline.
+    - the plate keeps the tag row's bottom (panel bottom - 16 = 834), because plate_cy is derived from it: the plate is taller, so its TOP goes
+      784 -> 764.  The "tag row and plate bottoms aligned" row still measures 834.0 / 834.0.
+    - the taller sub-line pushes the instruction pill down: the top band re-derives, so the two gaps around the pill stay EQUAL at 15.00 px (v8: 19.50).
+      The headline did not move (the spec forbids it); the sub-line still clears its descenders by 7.00 px (>= 6) and the content by 15.00 px (>= 12).
+  NO COLLISION had to be resolved: the widest chip ("closes on nothing") is 475 px of the panel's 868 px inner width, and the plate (274 px, right-
+    aligned) still ends 245 px clear of the tag row (349 px, left-aligned).  Nothing overlaps on any of the 430 frames of part C.
+  Total 65.0333 s -- v8's to the frame.
+
+CHANGED IN v8 (clip2/NOTES_v8.md -- the PACING review).  RE-TIMING ONLY: no text, no new mark, no layout, no colour.
+  A. beat 7 (the mean): the four dashed links arrive at +2.30 s into the beat, not +1.30 s (src/parta/build.py MEAN_LINK_T).  Their 0.40 s
+     fade ends at +2.70 s and the caption leaves at +5.10 s, so the finished picture now sits under its caption for 2.40 s instead of 3.40 s.
+     The beat keeps its length: hold = max(the 10-word rule 4.80 s, anim + 0.30) is 4.80 s either way.  The beat's own anim is now COMPUTED
+     (MEAN_LINK_T + MEAN_LINK_D = 2.70 s; v7 typed 2.20 while the links settled at 1.70) -- anim is what the settled-frame cache keys on, so a
+     value below the real end of the animation would have frozen the links half-drawn.  Same links, same colours, same 12 px gaps, same far ends.
+  B. the closing, the SERIES rule (clip 1's): the LAST caption stays fully drawn through the 1.00 s closing hold and the 0.50 s fade to black
+     and goes down with the picture.  v7 faded it out over 7 frames first and then held 1.50 s on a caption-less frame.  One flag does it:
+     src/partc/build.py LAST_CAP_HOLDS -- the last beat gets cap_out = 0, so it has no caption fade-out and cap_alpha() never ramps it down.
+     That removed fade-out is the whole length change: 7 frames, 0.233 s.  The clip is 1951 frames = 65.03 s (v7: 1958 frames = 65.27 s), and the
+     closing hold (30 f) and the fade (15 f) are untouched.  Asserted: caption alpha 1.000 at the last hold frame 1935 and the first fade frame 1936.
+  Nothing else moved: the same nine captions, the same headlines and the same swap at 37.40 s, the same seams, the same drawn marks.
+
+CHANGED IN v7 (clip2/NOTES_v7.md -- SERIES review 3):
+  1. A1 is 'Last clip: one observation, two valid chunks. Here, a 2-D toy with four.' -- "2-D" with the hyphen, the form clip 3 uses
+     for "1-D" / "2-D".  Same 13 words, so the same 6.00 s hold and the same total.
+  2. the headline swap moved from the start of beat 4 (reg) to the start of beat 6 (conv): 37.40 s, not 21.06 s.  'The simplest action head: regression' now holds
+     over the reg and feat beats as well, and 'Regression averages the modes' enters with the convergence animation -- the conclusion arrives after the two
+     beats that argue for it, not before.  Same motion as before: the existing 6-frame fade-out, an EMPTY band, then the 6-frame fade-in;
+     one constant, computed from the beat (src/parta/build.py SWITCH_F).  No text, no hold and no drawn mark changed, so the clip is v6's 65.27 s.
+
+CHANGED IN v6 (clip2/NOTES_v6.md -- the caption line rule, made explicit):
+  a caption LINE carries at most 1618 px of ink.  design_part1 draws the plate as ink + 110 px (2 x 55 px pads) and centres it, so 1618 px of ink is
+  exactly a plate of 1728 px at x 96..1824 -- the panel columns.  v5's A1 (1653 px) and A5 (1699 px) ran as SINGLE lines and their plates reached
+  x 56..1864, 40 px outside them.  In v6 the wrapper breaks both into two balanced lines again (A1 862 / 777 px, A5 825 / 861 px).
+  One line does it: src/*/chrome4.py sets D.CAP_MAXW = 1618 (chrome4.CAP_LINE_MAX) on the design module it loads, so the wrapper that parta, partc
+  and page3 all share takes the new threshold; the read-only source file is not touched, and a HEADLINE is still held to PLAN's 1728 px.
+  NO text and NO hold changed, so the clip is v5's 65.27 s to the frame; only two captions are set differently.  The widest plate in the clip is now
+  A7's, x 222..1698 (it is the one caption still on a single line, 1366 px).
+
+CHANGED IN v5 (clip2/NOTES_v5.md -- the SERIES vocabulary):
+  a SAMPLE is what the generator outputs (never "an action"), an ACTION is a ground-truth point of the toy, a PAIR is (observation, action chunk),
+  a MODE is one valid way of doing the task, and every caption is <= 14 words.  Four of the seven captions changed; A4, A6 and A7 already obeyed it.
+  A1 'Last clip: one observation, two valid chunks. Here, a 2-D toy with four.'  (13 words, was 15)
+  A2 'Four pairs, one colour each: one observation, four valid actions, four modes.'  (12, was 11)
+     -- "mode" is now defined here, long before the headline "Regression averages the modes" arrives (beat 6 in v7).  The in-panel note is unchanged.
+  A3 'The action head is a generator: observation and noise z in, a sample out.'  (14)
+     -- G outputs a SAMPLE, not "an action"; "sample" is defined here, before A4 and A5 use it.
+  A5 'A sample near another valid mode is still pulled back to its own action.'  (14, was 15)
+  Only the strings changed.  The holds re-derive from the word counts at 150 wpm, so beat 1 loses 0.80 s and beat 5 loses 0.40 s; beats 2 and 3 are
+  unchanged (beat 2 is animation-bound at 7.10 s either way, and A3 is 14 words as its predecessor was).  Total 65.27 s, from v4's 66.47 s.
+  Nothing drawn changed: the same seven beats, the same pictures, the same seams, the v4 tag position and the v3 star fade and gapped links.
+
+CHANGED IN v4 (clip2/NOTES_v4.md):
+  1. caption 1 was re-worded (v5 re-worded it again, above): PLAN said "several valid action chunks"; clip 1 shows exactly TWO routes and
+     this panel builds FOUR, so the author's wording names both.  The fourth data point lands 3.75 s
+     into the beat, well inside its 6.00 s hold, so "with four" is true on screen while the caption is still up.
+  2. the tag "mean" sits 34 px lower than the source put it: the rose dashed link was clipping the upper-left corner of its box.
+     Straight down, x unchanged (still centred under the marker), and 34 px is the smallest whole pixel that clears the dash's ink by this part's own
+     12 px label rule (12.05 px at 34, 11.31 at 33).  Nothing else moved: same text, same type, same plate, same in-time, same links.
+  Everything else is v3 (caption 2's fan wording, the gapped links, the star fade).
+
+CHANGED IN v3 (clip2/NOTES_v3.md):
+  1. beat 7 (the mean): the ONE neutral sample beat 6 leaves on the mean now fades OUT over 0.30 s exactly as the white X marker fades IN.
+     The two are the same near-white (238, 241, 246) and the same size (star r 16, X r 17), so drawn on top of each other they read as one smudge.
+     An alpha change only: same star, same place, same 0.30 s the marker already used; the source's fast path through K.draw_mean_state (which draws that star) is gone.
+     And the four dashed links now start 12 px clear of the marker's INK -- 33.2 .. 38.0 px out from the mean, direction by direction (the X's tips reach 26.0 px on a diagonal, 19.0 px on an axis).
+     Same dashes, same colours, same widths, same far ends (the data points): only each link's first point moved outward.  Nothing else in the clip changed, so the
+     total length is v2's to the frame.
+  2. DECLINED (as NOTES_v3.md asks): the 'feat' tag 'near a valid mode, still penalized' stays -- it is the author's own picture label.
+  3. caption A2 stays as v2 wrote it (below); 4. everything else in v2 stands.
+
+CHANGED IN v2 (from the round-1 reviews):
+  caption A2 is 'Four pairs, one colour each: one observation, four valid actions, four modes.' -- v1's read flat beside four differently
+    coloured triangles and repeated the in-panel note "same observation, 4 pairs" word for word.  The picture (a FAN, not a stack) is the source's.
+  the in-panel note "one sample per pair" is NOT drawn (src/parta/build.py SHOW_NOTE_ONE = False): it repeated caption 4's own opening while
+    that caption was on screen.  With it gone, beat reg is back to the source's anim 8.60 s (v1 had to stretch it to 10.05 s so the note could be read).
+  the part C sub-line is 'a toy generator trained by regression' (v1: "a toy generator trained on multimodal demonstrations", which said what caption C1 says 0.3 s later).
+
+the assertion table:
+  caption box y range identical in both parts                              892..1044 | 892..1044                                OK
+  caption max line width identical                                         1618 | 1618                                          OK
+  caption type identical (Medium 54)                                       54 | 54                                              OK
+  caption padding, ONE line (ink -> box, l/r and t/b), part A              55.0/55.0 57.0/57.0                                  OK
+  caption padding, TWO lines, part A+part C                                55.0/55.0 25.0/25.0 | 55.0/55.0 25.0/25.0            OK
+  two-line caption leading identical (64 px)                               64 px | 64 px                                        OK
+  background identical in both parts                                       (11, 15, 20) | (11, 15, 20)                          OK
+  kicker string identical in both parts                                    'IMLE-VLA · 2 / 4 · WHY REGRESSION FAILS' | 'IMLE-VLA · 2 / 4 · WHY REGRESSION FAILS' OK
+  one chrome4.py, byte-identical in both parts                             c0c59bc2dfdb (md5, first 12)                         OK
+  every caption is <= 2 lines and every LINE's ink <= 1618 px              widest line 1366 px 'The mean matches none of the modes: an i...' OK
+  ... so every caption plate stays inside the panel columns x 96..1824     widest plate x 222..1698 (9 captions)                OK
+  every headline's ink <= 1728 px at Bold 76                               1264 px | 1093 px | 1053 px                          OK
+  no two headlines on screen at once (band y 110..254 at frame 1127)       0 non-background px                                  OK
+  ... and the headline before it differs from the one after                'The simplest action head: regression' -> 'Regression averages the modes' OK
+  the right panel has ZERO ink: in rows y 344..850, all ink is inside the one panel x 510..1410 111 frames, worst 0 px                               OK
+  ... and no floating element belongs to a right panel                     panels drawn: ['None', 'left']                       OK
+  ... and no string on screen names cIMLE                                  30 strings checked                                   OK
+  green ((46, 204, 143)) is clip 4's and appears nowhere                   the closest pixel of 111 sampled frames is 63 off (frame 1548), limit 45 OK
+  the dip touches nothing in the kicker rows (y 40..104)                   6 frames, max channel diff 0                         OK
+  nothing drawn touches the frame edge (>= 20 px clear)                    tightest margin 35 px (frame 5)                      OK
+  ... and on the frames themselves, the caption band (y 892..1044) stays inside x 96..1824 ink x 222..1698 over 490 sampled frames              OK
+  beat 7: the X marker is alone on the mean (no star under it) at frame 1509 0 px of (238, 241, 246) besides the marker's own 333 OK
+  ... and it is a FADE: the star is at full ink on beat 6's last frame 1350 289 of the 289 px of star the X never covers         OK
+  ... dimming over the 0.30 s the X fades in, frames 1350, 1351, 1355, 1360 mean ink 242 > 241 > 137 > 26 (of 26 on the panel with nothing on it) OK
+  ... and the four dashed links stop 12 px clear of its ink                the nearest dash of any of them clears it by 11.0 px (rose), 1 px of raster OK
+  ... and no dash comes within 12 px of the "mean" tag (v4: 34 px lower)   the nearest (rose) is 13.1 px from its box           OK
+  the LAST caption is fully drawn at the last hold frame 1935 and at the first fade frame 1936 caption alpha 1.000 | 1.000                          OK
+  ... and on every frame from 1714, where it finishes arriving, to the last one lowest alpha 1.000 over 237 frames                   OK
+  ... and on the frames themselves: caption ink in y 892..1044 at 1935, 1936 and the last frame 1950 40063 | 40063 | 29130 px (measured against each frame's own background) OK
+  ... the closing hold is 1.00 s and the fade 0.50 s, both untouched       30 + 15 frames                                       OK
+  part C status chips are Medium 52 on a 78 px chip (was Medium 40 / 60)   Medium 52; chip end 78 px, chip close 78 px          OK
+  ... the "regression" name plate is Medium 48 on a 70 px plate (was 34 / 50) Medium 48; plate 70 px                               OK
+  ... and part C's sub-line is Medium 42 in GREY (176, 186, 200) (was Medium 34) Medium 42, (176, 186, 200), ink 688 px               OK
+  ... clearing the headline's descenders by >= 6 px and the content by >= 12 px head -> sub 7.00 px, sub -> pill 15.00 px, pill -> panel 15.00 px OK
+  ... and the classes the spec leaves alone did not move                   7 checked (kicker 36, headline 76, caption 54, simulation 34, sped 34, object 34, instruction 32) OK
+  ... and no chip or plate colour changed                                  6 checked, 0 differ                                  OK
+  ... and every resized element still fits the panel's 16 px pads          tightest 0.0 px (chip end left); widest chip 475 px of the 868 px inner width OK
+
+the parts' own assertion tables (timing, reading time, geometry, rhythm, the time remap, the ghosts, overlap) print with  python3 build.py --continuity.

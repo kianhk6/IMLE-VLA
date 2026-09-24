@@ -1,0 +1,23 @@
+partA_data_end                     t=   6.50s frame   195  partA_data_end_f00195.png
+partA_obs_end                      t=  14.10s frame   423  partA_obs_end_f00423.png
+partA_gen_end                      t=  21.03s frame   631  partA_gen_end_f00631.png
+partA_reg_end                      t=  30.43s frame   913  partA_reg_end_f00913.png
+partA_feat_end                     t=  37.37s frame  1121  partA_feat_end_f01121.png
+partA_conv_end                     t=  45.00s frame  1350  partA_conv_end_f01350.png
+partA_mean_end                     t=  50.30s frame  1509  partA_mean_end_f01509.png
+partC_setup_end                    t=  56.80s frame  1704  partC_setup_end_f01704.png
+partC_left_end                     t=  63.50s frame  1905  partC_left_end_f01905.png
+partA_mean_crossfade_half          t=  45.17s frame  1355  partA_mean_crossfade_half_f01355.png
+headline_A_last                    t=  37.37s frame  1121  headline_A_last_f01121.png
+headline_band_empty                t=  37.57s frame  1127  headline_band_empty_f01127.png
+headline_B_fading_in               t=  37.70s frame  1131  headline_B_fading_in_f01131.png
+seam_last_of_partA                 t=  50.47s frame  1514  seam_last_of_partA_f01514.png
+seam_dip_mid                       t=  50.60s frame  1518  seam_dip_mid_f01518.png
+seam_first_of_partC                t=  50.70s frame  1521  seam_first_of_partC_f01521.png
+closing_hold_last                  t=  64.50s frame  1935  closing_hold_last_f01935.png
+closing_fade_first                 t=  64.53s frame  1936  closing_fade_first_f01936.png
+closing_fade                       t=  64.80s frame  1944  closing_fade_f01944.png
+closing_last_frame                 t=  65.00s frame  1950  closing_last_frame_f01950.png
+cut strip headline  20 frames around f1122  cut_strip_headline_change.png
+cut strip A -> C    20 frames around f1515  cut_strip_partA_to_partC.png
+cut strip closing   26 frames around f1936  cut_strip_closing.png (v8: the caption holds through the hold and the fade)

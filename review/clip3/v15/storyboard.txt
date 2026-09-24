@@ -1,0 +1,283 @@
+IMLE-VLA teaser RE-CUT -- CLIP 3 of 4, "FLOW MATCHING IS SLOW AND JERKY", v15
+1920x1080 @ 30 fps, background (11, 15, 20).  2548 frames = 84.93 s  (PLAN target 70-85 s).
+Built by teaser/reorder/clip3/v15/build.py from the modules in src/ (copies of the
+frozen sources, paths rewritten, text edited; see NOTES.md).  PLAN.md v3 + BUILDER_BRIEF.md.
+
+GLOBAL CHROME  -- v6 (NOTES_v6 #1): THE SERIES CHROME.  Clips 1, 2 and 4 draw
+their chrome with clip 4's chrome4 grammar; clip 3 drew clip 1/2's, ~45 px off.
+src/chrome4.py IS clip 4 v5's chrome4.py, byte-identical apart from its KICKER
+line, and build.py draws every chrome element of this clip through it:
+  kicker    'IMLE-VLA · 3 / 4 · FLOW MATCHING IS SLOW AND JERKY'
+            D.tracked(d, W/2, 52, KICKER, Medium 36, GREY2, track=7) -- 1278 px
+            drawn LAST on every frame at alpha 1, so it is pixel-identical
+            everywhere, including inside the five dips (which dim the frame).
+  headline  D.txt(d, W/2, 128, head, Bold 76, WHITE, anchor=ma); ink y 141..216
+  sub-line  D.txt(d, W/2, 214, sub, Medium 34, GREY, anchor=ma)  (the 3.3 card)
+  caption   K.caption(d, cap): box y 892..1044, side pads 55 px, two-line leading 64,
+            Medium 54 wrapped to <= 2 balanced lines of <= 1728 px
+  band      y 254..852; 3.1's chip stack ends at 1043, the caption box's own bottom
+  category label y 900, coloured contrast line y 957 (Medium 36 / Regular 50) --
+  these two are NOT chrome4 elements: they are the slot PLAN 3.3 freed under the
+  panels (NOTES D1), and they drop 20 px with the panels.
+  v3 (NOTES_v3 #4): in 3.3a / 3.3b / 3.3c the headline and the category label are
+  drawn at full alpha on the segment's frame 0, so the clip's 6-frame dip fades
+  them up together with the panels instead of 4-6 frames after them.
+  v4 (NOTES_v4 #1): 3.2 is the one segment whose headline changes inside itself.
+  'And it is jerky. Why?' fades OUT over 6 frames from 33.60 s,
+  then 'Samples land just off the data manifold' fades IN over 6 frames.
+  Never both on screen; the band empties to 0 px of ink between the two fades.
+  v5 (NOTES_v5 #1): that change is gated on the MORPH start, not on caption c1, so
+  headline B rises as the samples begin compressing toward the curve -- it never
+  sits over the identity scatter.  (v4 swapped at 33.20 s.)
+  v5 (NOTES_v5 #2): the caption plate takes the same change.  At each caption
+  boundary the outgoing box fades OUT over 6 frames and only then the incoming box
+  fades IN over 6; the slot (y 892..1044) empties to 0 px between them, so two
+  differently sized plates are never on screen at once.  The source's 20 px entry
+  rise goes with the entry: a band change is a cross-fade in place.
+
+SEGMENTS
+  #  segment        global in    out      frames     source
+  S1 3.1 slow          0.00 s   19.20 s   576 f     clip1 v3 STORYBOARD[arch][A] (phase A only)
+     dip (6 f, 3 down / 3 up; the kicker is blitted over it)    19.20 s
+  S2 3.2 jerky        19.40 s   45.00 s   768 f     clip2 teaser_flow_matching_B (FlowClip)
+     dip (6 f, 3 down / 3 up; the kicker is blitted over it)    45.00 s
+  S3 3.3 title        45.20 s   51.20 s   180 f     new: text primitives only (PLAN rule 2)
+     dip (6 f, 3 down / 3 up; the kicker is blitted over it)    51.20 s
+  S4 3.3a react       51.40 s   58.60 s   216 f     clip1 STORYBOARD[react], VideoSegment, 2x
+     dip (6 f, 3 down / 3 up; the kicker is blitted over it)    58.60 s
+  S5 3.3b swap        58.80 s   70.80 s   360 f     clip1 **v3** STORYBOARD[swap], VideoSegment, 3x
+     dip (6 f, 3 down / 3 up; the kicker is blitted over it)    70.80 s
+  S6 3.3c bowl        71.00 s   83.43 s   373 f     clip2 teaser_robot_v2 RobotPart -> BowlSegment, 4x
+     closing hold 30 f (1.00 s) on S6's last frame, then a 0.50 s fade to black.
+     No end card.
+
+BEATS, CAPTIONS AND ELEMENTS  (global times)
+  segment      beat                       in       out    w   text
+  3.1 slow     headline                      0.00   19.20   8   To cover the modes, π0.5 uses flow matching
+  3.1 slow     row A complete (bracket)      3.00   19.20   7   ×10 forward passes on the action head
+  3.1 slow     chip 1                        3.60   19.20  12   Slow: the flow turns noise into a chunk over ten sequential passes
+  3.1 slow     chip 2                        8.60   19.20  13   Poor reactivity: by the time a chunk is ready, its observation is stale
+  3.1 slow     chip 3                       13.60   19.20  12   Stop-and-go: after a chunk is executed, the robot waits for the VLA
+  3.2 jerky    headline A                   19.40   33.80   5   And it is jerky. Why?
+  3.2 jerky    headline B                   33.80   45.00   7   Samples land just off the data manifold
+  3.2 jerky    caption i1                   20.00   26.60  14   Ground-truth action chunks fill a thin slice of the ambient space: the data manifold.
+  3.2 jerky    caption i2                   26.60   32.20  12   Thin: they span few ambient dimensions; here, a curve in a plane.
+  3.2 jerky    caption c1                   32.20   38.60  14   To land on the 1-D manifold, the flow must compress 2-D noise onto it.
+  3.2 jerky    caption c2                   38.60   44.60  13   But the flow is invertible, so it keeps dimension: 2-D noise stays 2-D.
+  3.2 jerky    identity -> trained morph    33.60   40.60   0   (animation, no words)
+  3.2 jerky    near-miss rings + tag        40.60   45.00   4   off the manifold: jerky
+  3.3 title    headline                     45.20   51.20   8   On the robot: ours, IMLE-VLA, next to π0.5
+  3.3 title    sub-line                     45.35   51.20  12   same backbone, same tasks; new action head, more steps executed per chunk
+  3.3a react   headline                     51.40   58.60   5   Pineapple on a moving plate
+  3.3a react   category label               51.40   58.60   1   REACTIVITY
+  3.3a react   contrast line                51.55   58.60  13   IMLE-VLA acts on a newer observation   ·   π0.5 acts on a stale one
+  3.3a react   left pill                    55.80   58.60   5   Placed on the moving plate
+  3.3a react   right pill                   55.05   58.60   3   Misses the plate
+  3.3b swap    headline                     58.80   70.80   6   Swap the pineapple and the cube
+  3.3b swap    category label               58.80   70.80   1   STOP-AND-GO
+  3.3b swap    contrast line                58.95   70.80  10   IMLE-VLA is moving again sooner   ·   π0.5’s wait is longer
+  3.3b swap    left pill                    64.20   70.80   4   Done · 2x sooner
+  3.3b swap    right pill                   68.95   70.80   1   Done
+  3.3c bowl    headline (task)              71.00   76.40   6   Put the pineapple in the bowl
+  3.3c bowl    category label               71.00   76.40   1   JERK
+  3.3c bowl    headline (jerk)              76.70   83.43   5   2.7x lower jerk than π0.5
+  3.3c bowl    jerk label                   76.70   83.43   8   2.2X TO 3.0X LOWER ACROSS FOUR REAL TASKS
+  3.3c bowl    contrast line                71.15   76.40   8   IMLE-VLA moves smoothly   ·   π0.5 moves in jolts
+  3.3c bowl    footnote                     76.65   83.43  15   jerk = third finite difference of joint positions over dt³, averaged over joints and steps
+  3.3c bowl    left pill                    73.14   83.43   1   Done
+  3.3c bowl    right pill                   76.37   83.43   1   Done
+
+3.2 CAPTION PACING  hold = max(1.8, 0.8 + words / 2.5)  (150 wpm, PLAN)
+  i1    0.60 -  7.00 s  (14 w, hold 6.40 s)  Ground-truth action chunks fill a thin slice / of the ambient space: the data manifold.
+  i2    7.00 - 12.60 s  (12 w, hold 5.60 s)  Thin: they span few ambient dimensions; / here, a curve in a plane.
+  c1   12.60 - 19.00 s  (14 w, hold 6.40 s)  To land on the 1-D manifold, the flow / must compress 2-D noise onto it.
+  c2   19.00 - 25.00 s  (13 w, hold 6.00 s)  But the flow is invertible, so it / keeps dimension: 2-D noise stays 2-D.
+  (v5: the plate itself fades in 6 frames after the beat starts and out over the 6
+  frames from the next beat's start, so its time on screen is the hold above,
+  shifted 6 frames; the holds and the pacing rule are unchanged.)
+  lead-in 0.60 s, tail 0.60 s; the morph runs 14.20 - 21.20 s (local), the near-miss
+  rings enter from 21.20 s and stay to the end of the section.
+
+DROPPED, AND WHY
+  3.1  chip 2 is RE-WORDED: PLAN 3.1's "while the next chunk is computed, the robot
+       acts on a stale observation" states asynchronous execution; root.tex l.242 makes
+       the loop synchronous ("the robot stalls until the next prediction is ready",
+       l.126).  The paper's own staleness sentence is l.478.  The shorter true wording
+       is one line, which is what lets all three chips stand stacked, as PLAN asks.
+  3.1  the sub-head "Iterative action heads are the bottleneck." -- PLAN 3.1 gives none.
+  3.1  "300M" in the bracket note -- PLAN 3.1's wording; nothing else in the clip
+       refers to the action expert's size.
+  3.1  phase B (the green IMLE-VLA row, 3.7x, 55 Hz) -- that is clip 4's 4.1 beat.
+  3.2  six of the source's ten beats: 'train' (its silent 3.0 s beat; the animation
+       it carried now rides captions 1-2), 'props', 'dim' (the "same number of
+       dimensions" branch), 'oneone' (the computed preimage curve, its halo and its
+       tag), 'onto' (the density flood), 'closeA', 'jerky' (the zigzag).  PLAN v3
+       replaced all of them with the author's four captions.  v2 keeps TWO of the
+       dropped 'dim' beat's marks -- "ambient space: 2 dimensions" in the panel and
+       "manifold: 1 dimension" on a leader to the curve -- re-coloured from CORAL into
+       the text ink (PLAN rule 5 reserves coral) and re-timed onto caption i2, the
+       sentence they were drawn for; they leave with it.  The third mark ("noise: 2
+       dimensions") stays dropped: the noise inset does not exist yet under i2.
+  3.2  the dark-red "touch the manifold: 141 of 5000" class and its legend: they are
+       computed on the FINAL checkpoint, so they are only true after the morph, and
+       PLAN v3 does not ask for them.
+  3.3a first sub-line ("The plate keeps moving while the policy is still predicting.")
+  3.3b first sub-line ("Once an action chunk is executed, the robot waits for the
+       policy.") -- PLAN 3.3: "the sub-line keeps ONLY the coloured contrast line".
+  3.2  the four captions are wrapped by chrome4 (v6), not at the phrase boundary
+       the source used: design_part1.cap_lines balances the two lines, which is what
+       clips 1, 2 and 4 do.  c1 and c2 come out exactly as they were; i1 breaks at
+       "a thin slice / of the ambient space" and i2 at "the ambient / dimensions",
+       mid-phrase.  Adopting the series caption routine means adopting its wrap.
+  3.2  each caption change is a 6-frame fade-out then a 6-frame fade-in (v5), the
+       same change the headline band uses.  v4 ran the incoming plate's 0.3 s entry
+       under the outgoing plate's 0.25 s fade, so two differently sized boxes were
+       on screen together for ~6 frames at 26.40, 33.20 and 40.40 s.  Each plate is
+       now on screen for exactly its hold, shifted 6 frames later, and the caption
+       slot empties to 0 px between the two fades.  The 20 px entry rise goes with
+       the entry: a band change is a cross-fade in place.
+  3.2  the headline is in TWO states (v4, the author): "And it is jerky. Why?"
+       over the bare curve (captions i1, i2), then "Samples land just beside the
+       data" from caption c1 on, once the flow, the noise inset and the 5000 samples
+       are on screen -- so the conclusion never precedes its picture.  They swap
+       with the series' own headline change, 6 frames out then 6 frames in (clip 4
+       v8's band fade), and are never on screen together (assertion 5b).  v5 gates
+       the change on the MORPH start (34.80 s), not on caption c1 (33.20 s), so B
+       never sits over the identity scatter: it rises as the samples begin
+       compressing toward the curve.  v3 had
+       one headline, "And it is jerky: samples land beside the data"; v2 had "And it
+       is jerky. Part of why:".  The plan-vs-paper conflict behind all three still
+       stands: root.tex attributes the measured 2.2-3.0x jerk to latency (l.474) and
+       never to a manifold argument -- see NOTES C5.
+  3.2  caption c2 says "But the FLOW is invertible" (v4), the subject c1 already
+       named; it said "the map".  Same 15 words, so the hold is unchanged.
+  3.2  the noise inset's "noise space" title is now a pill INSIDE the inset, at the
+       "ambient space" pill's top-left margins (18, 16).  It used to be a bare line
+       above the panel at y = 148 -- inside the headline band (80..176), 11 px under
+       the headline.  Same words, same type, same pill primitive.
+  3.1  chip 1 reads "Slow: the flow takes ten sequential passes per chunk, 15 Hz"
+       (v6): it ties the ten passes to flow matching, as the headline does.  It is
+       11 words, so PLAN's rule wants 5.2 s before chip 2 enters and it gets 4.0 s;
+       the chips STACK, so it stays on screen for the segment's remaining 15.6 s.
+       Buying the full 1.2 s would put the clip at 85.33 s, over PLAN's ceiling.
+  3.1  the row does NOT drop the 20 px NOTES_v6 #1 asks for -- see NOTES C18.  It is
+       already below the band top (285 > 254), and the 1044 ceiling for the chip
+       stack leaves the row bottom (728) only 296 px for 288 px of pills.
+  3.3a 24 frames (0.8 s) come off the tail: the segment now runs 7.20 s and is out
+       at 60.80 s.  Nothing inside it moves; every later segment starts 0.8 s
+       sooner, and the clip is 84.13 s instead of 84.93 s.
+  3.2  the caption box is 152 px tall, not 184: y 892..1044, the series' own slot.
+       The 32 px come out of the box's vertical padding (22 -> 14), its leading
+       (2 -> 1) and the dead rows a text sprite carries above its ascenders and
+       below its descenders (11 + 4); the type is still Medium 54 and no caption was
+       re-worded or re-wrapped.
+  3.2  the "data manifold" pill no longer sits ON the curve (it covered two data
+       dots): it moves to the empty pocket below-left of the curve, the panel's
+       bottom-left corner, at the same margins as the "ambient space" pill in the
+       top-left.  No leader is drawn -- the curve's lower-left tip is 39 px directly
+       above it -- and the "manifold: 1 dimension" tag now avoids its rect.
+  3.3a/b/c  the headline and the category label are up on the segment's frame 0, so
+       they fade in out of the 6-frame dip WITH the panels instead of 4-6 frames
+       later (src SEAM_LEAD = 0.35 s).  The coloured contrast line keeps the
+       source's own 0.15 s stagger.
+  3.3  the end card of clip 1 and the closer of clip 2 -- not in PLAN's clip 3.
+  3.3c the gripper TRAIL over both panels (src TRAIL = False): PLAN rule 5 and the
+       author's standing rule forbid trajectory lines; a tinted ghost instead would be
+       a new graphic (PLAN rule 2).  The jerk claim is carried by the 2.7x headline,
+       the footnote and the two Done pills.
+
+ASSERTIONS
+  1  kicker identical on every sampled frame                             OK
+       1237 frames sampled (every 3rd + every frame within 1.0 s of the 7 seams), 0 differ (worst 0 at None)
+  2  kicker string is one module constant; no segment draws its own      OK
+       src/chrome4.py KICKER, 1278 px tracked | segments: None, None, '', '', ''
+  3  caption box: chrome4 y 892..1044, Medium 54, <= 2 lines, every line <= 1618 px OK
+       4 captions (0 on one line, 4 on two); widest line 1007 px; box y-range [(892, 1044)]; pads (L, R, T, B) [(55.0
+       , 55.0, 25.0, 25.0)]; leading [64.0]; 36 px clear of the frame edge
+  3b 3.2 changes its caption plate 6 f out / 6 f in, never two plates at once OK
+       3 changes, 30 frames each; frames with two plates up: 0; max alpha_prev*alpha_next = 0.000; the caption slot (
+       y 892..1044) empties between the two fades: i2 at 26.40 s -> 0 px, c1 at 32.00 s -> 0 px, c2 at 38.40 s -> 0 p
+       x
+  4  every headline ink <= 1728 px; band headlines at chrome4's y 128 (anchor ma) OK
+       3.1 1550 | 3.2 A 684 | 3.2 B 1343 | 3.3 1447 | 3.3a 966 | 3.3b 1126 | 3.3c 989 | 3.3c jerk 851 | band ink y 14
+       1..216; 3.3's card is centred instead (NOTES_v11 #3): headline ink y 476..547, sub-line y 557..603, block cent
+       re y 539 of 1080
+  5  no two headlines on screen at once (3.3c swap, 90 frames)           OK
+       frames with both headline alphas > 0: 0; peak band ink 23825 px vs 23825 px in the two pure states, and the ba
+       nd empties to 0 px between the two fades; the category label swaps on the same 6 f out / 6 f in curve, max alp
+       haA*alphaB = 0.000
+  5b 3.2 swaps its headline with the 6 f out / 6 f in band change, never both up OK
+       A 'And it is jerky. Why?' -> B 'Samples land just off the data manifold' at 33.60 s (local 14.20 s); 90 frames
+        measured, both alphas > 0 on 0, max alphaA*alphaB = 0.000; peak band ink 32935 px vs 32935 px pure, and the b
+       and empties to 0 px between the two (the fade-out reaches 0 before the fade-in starts)
+  6  nothing drawn touches the frame edge (4 px band, every keyframe)    OK
+       0 of 31 keyframes have ink in the band (None); the 3.1 chip stack (3 chips, stacked, 12 px gaps, tops y 731, 8
+       39, 947) ends at y = 1043 -- inside the caption box's own bottom (1044), so 3.1's content lines up with every 
+       captioned segment; the row is y 276..720, 60 px under the headline's ink
+  7  3.3b uses clip 1 v3's take (replace_flow.MOV 495..1580)             OK
+       right=replace_flow.MOV (350, 262, 1200, 808) 495..1580 pill 'Done'; left pill 'Done · 2x sooner'; 'replace_flo
+       w_jerk'/'4x sooner' in config: False
+  8  green = IMLE-VLA (ours), coral = π0.5 / flow matching, never swapped OK
+       left/right accents + plates + contrast runs: react ok, swap ok, bowl ok
+  9  no trajectory lines, no multi-ghost composites                      OK
+       3.1 / 3.2 / 3.3 draw none (3.2's zigzag is dropped with its caption).  v2 turns BowlSegment.draw_trail OFF (sr
+       c/build_clip2_v3.py TRAIL = False): PLAN rule 5 and the author's standing rule forbid trajectory lines, and dr
+       awing a tinted ghost instead would be a new graphic (PLAN rule 2), so the 2.7x headline, the footnote and the 
+       two Done pills carry the jerk claim.  Switching TRAIL back on changes 35291 px of 3.3c's last frame; the deliv
+       ered frame has none of them
+  10 segment frames + 5 dips + hold + fade == total                      OK
+       576 + 768 + 180 + 216 + 360 + 373 + 5x6 + 30 + 15 = 2548 frames = 84.93 s
+  11 3.2 runs the TRAINED flow (flow_weights_v3.pt), never a re-trained one OK
+       preimage of the manifold maps forward to max error 2.98e-07 (< 1e-3), 2000 of 2000 points inside the inset
+  12 the identity -> trained morph spans captions 1 and 2, and the rings wait for it OK
+       prog = 0.00 at 14.10 s (caption 1 + 1.5 s), 1.00 at 21.20 s (2.20 s into caption 2); source 2.7 s, here 7.0 s;
+        the "off the manifold: jerky" rings enter at 21.20 s, 0.00 s AFTER the morph ends (v7: 0.60 s before); all 3 
+       are at full alpha by 23.75 s, 1.85 s before the section ends
+  13 the headline + category label are up on frame 0 of 3.3a / 3.3b / 3.3c (seam fade-in) OK
+       frame 0 vs steady state: 3.3a head 23382/23382 px, label 2248/2248 px, panel 527794 px (v2 label: 0 px) | 3.3b
+        head 27630/27630 px, label 2678/2678 px, panel 527863 px (v2 label: 0 px) | 3.3c head 23825/23825 px, label 1
+       074/1074 px, panel 527231 px
+  14 the "data manifold" pill sits in empty canvas, not on the curve     OK
+       pill at panel (18, 527) 290x68, i.e. screen (716, 777); nearest curve point / data dot 14.7 px away (v2: 0 px 
+       -- it covered the curve and 2 dots; v5: 38.7 px, before v6's 4.2a crop took 25 px of plate off the bottom of t
+       he pocket); "manifold: 1 dimension" tag at (491, 519) 446x72, overlap: False
+  15 the "noise space" label is a pill inside the noise inset, out of the headline band OK
+       pill 257x68 at (264, 266) inside the inset (246, 250) 440x440; its top is 12 px below the series band top (254
+       ).  v3 drew a bare 52 px line at y = 188, inside the headline band
+  16 kicker / headline / caption geometry equal to clip 4's (one series chrome) OK
+       src/chrome4.py == clip4/v15/src/partb/chrome4.py apart from KICKER: True; caption boxes equal to clip 4's on a
+       ll 4 captions: True; draw_kicker + draw_head == chrome4.chrome(), max pixel diff 0; kicker y 52 Medium 36 trac
+       k 7, 1278 px tracked, box (315, 40, 1605, 104); headline y 128 Bold 76 anchor ma; caption y 892..1044, lead 64
+       , side pad 55
+  17 the middle band: nothing a beat draws sits above y 254 (3.3's panels excepted) OK
+       3.1 slow 276, 3.2 jerky 284, 3.3 title 1080, 3.3a react 254, 3.3b swap 254, 3.3c bowl 254 | 3.1's row y 276..7
+       20, its chips 731..1043; 3.2's panel y 250..860 (25 px of empty plate off each end, the 4.2a crop) and its ins
+       et y 250..690; 3.3's panels y 254..860 (606 px in a 598 px band: the top is ON the band line, the 8 px of over
+       flow is at the bottom), its category label y 900 and contrast line y 957, nothing below y 1021
+  18 every caption line carries at most 1618 px of ink                   OK
+       2 line(s), widest ink 1007 px, plate x 402..1518 | 2 line(s), widest ink 987 px, plate x 412..1508 | 2 line(s)
+       , widest ink 883 px, plate x 464..1456 | 2 line(s), widest ink 918 px, plate x 446..1474 (design_part1 wraps a
+       t 1728 px, which lets a plate reach 1838 px wide, x 41..1879)
+  19 every caption plate's x extent lies inside the panel columns 96..1824 OK
+       4 plates: 402..1518 (1117 px), 412..1508 (1097 px), 464..1456 (993 px), 446..1474 (1028 px); widest 1117 px of
+        the 1728 px the columns allow, 306 px of margin at its narrowest side
+  20 3.3c changes its text block after the last pill, and the footnote keeps its hold OK
+       the block swaps at 5.40 s local (76.40 s global), 0.03 s after pi0.5's Done pill at 76.37 s (v8: 3.20 s local,
+        2.17 s BEFORE it); the 15-word footnote enters at 76.65 s and holds 6.78 s to the segment end at 83.43 s -- 6
+       .00 s of pure reading at 150 wpm, 6.80 s under PLAN's full rule; the segment is 373 f (v10: +30 f on v8/v9, th
+       e closing hold and fade following it)
+  21 explicit caption breaks: honoured when both lines <= 1618 px and shorter >= 55% of longer OK
+       2 marked: 'Thin: they span few ambient dimens...' -> HONOURED (987 | 569 px, shorter/longer 0.576 vs 0.55); dr
+       awn as 987 px | 569 px | 'But the flow is invertible, so it ...' -> HONOURED (711 | 918 px, shorter/longer 0.7
+       75 vs 0.55); drawn as 711 px | 918 px
+  22 3.2's figure group spans x 246..1674, clip 4 4.2a's position        OK
+       noise inset x 246..686, data panel x 698..1674, 12 px between them; gutters 246 | 246 (v10: 20..1448, gutters 
+       20 | 472); group 1428 px wide, unchanged
+  23 the LEGIBILITY_v1 sizes and inks, as drawn                          OK
+       title sub-line Medium 48 GREY, ink 1681 px wide at y 557..603, 10 px under the headline's descenders; block y 
+       476..603, centre 539.5 of 1080 | 3.3c range line Medium 44 GREY, 980x56 at y 900 (was Medium 36 GREY2, 804x47)
+        | 3.3c footnote Regular 42 GREY, 1569x54 at y 964..1018 (ink only; LEGIBILITY_v1 calls its old size 42, it is
+        40) | 3.3 result pills Medium 52 in a 90 px capsule (v13: 78), widest 743 px: 'Placed on the moving plate', i
+       nside the 900 px panel; ink pad >= 24 px from the cap top and >= 16 px from the descender bottom (v13: 18 / 10
+       ); the pill sits 16 px under the panel top and 417 px above the "2x speed" tag; name plates Bold 48 on a 70 px
+        plate -- v12 had 46 / h 87, 50 / h 114

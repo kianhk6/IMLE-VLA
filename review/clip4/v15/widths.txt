@@ -1,0 +1,42 @@
+headlines, at Bold 76 (limit 1728 px):
+  4.1     977 px  'IMLE-VLA: one forward pass'
+         1113 px  sub-label at Medium 42  'cIMLE: conditional Implicit Maximum Likelihood Estimation'
+  4.2a   1443 px  'Samples are pulled onto the data manifold'
+  4.2b   1443 px  'Samples are pulled onto the data manifold'
+  4.3     838 px  'cIMLE covers the modes'
+          975 px  sub-label at Medium 42  'conditional Implicit Maximum Likelihood Estimation'
+  4.4    1173 px  'Regression vs cIMLE in simulation'
+         1001 px  sub-label at Medium 42  'toy generators trained on multimodal demonstrations'
+
+kicker   691 px at Medium 36, tracked 7   'IMLE-VLA · 4 / 4 · ONE PASS, EVERY MODE'
+
+text captions, at Medium 54 (limit 1728 px, 2 lines):
+  4.2a   1592 px  'In training, IMLE pulls a sample onto each action, again and again.'
+  4.2a   1414 px  'No invertibility to preserve: many z may map to one action.'
+  4.4     845 px  'Each z picks a mode: the generator'
+  4.4     806 px  'commits to a bottle and places it.'
+  4.4    1221 px  'One forward pass per chunk, and every mode kept.'
+
+4.3 the objective plate: the equation 1588 x 92 px, the phrases at Medium 54:
+  intro      474 px  'the cIMLE objective'
+  draw       739 px  'm samples per pair, here m = 5'
+  match      756 px  'only the nearest sample counts'
+  free       673 px  'the others are not penalized'
+  again     1186 px  'training repeats: samples tighten onto the modes'
+  cover      743 px  'every pair: no mode is dropped'
+  latent     794 px  'different z reach different modes'
+  compare    835 px  'm = 1 removes the min: regression'
+
+4.1 chips, by the source's own pill rule (row width 1824 px):
+    658 px  x   48 ..  706  'Reacts to a moving plate'
+    496 px  x  742 .. 1238  'Less stop-and-go'
+    599 px  x 1273 .. 1872  '2.2x to 3.0x lower jerk'
+   1801 px  total with two 24 px gaps -> one row; drawn with two 35.5 px gaps, x 48 .. 1872
+
+4.1 the stat block:
+  242 px tall in a 246 px slot, widest line 997 px in a 1156 px region
+
+4.2b the closer's pills and lines (the source's own strings, kept verbatim):
+  'flow matching' / 'IMLE'
+  'Flow matching: dense around the manifold, never exactly on it'
+  'IMLE: learns the manifold directly'

@@ -1,0 +1,281 @@
+IMLE-VLA teaser RE-CUT -- clip 4 "ONE PASS, EVERY MODE", v15
+2803 frames @30 fps = 93.4333 s (= 2803/30, exact)
+kicker (every frame): 'IMLE-VLA · 4 / 4 · ONE PASS, EVERY MODE'
+
+sources, copied into src/ and edited (NOTES.md lists every edit):
+  copied into src/ and edited here; teaser/clip1..4 are READ-ONLY and untouched.
+  v2 edits are marked [v2] .. v13's [v13]; NOTES.md section 4 lists them with the note each answers.
+  
+  src/arch.py            <- teaser/clip1/build_teaser_v4.py   source md5 88251f8d01d84ddd6f1edd45dc7ca7fa
+                            paths made absolute: REPO (already absolute in the source)
+                            edits: phaseA_end 10.9 -> 1.5; A.chips -> []; every phase-B time - 9.40 s; big_stat, big_caption (two lines) and the three chips are the plan's; draw_row_B loops over the caption LINES
+                            [v3] draw_chips DISTRIBUTES the pills over ROW_W when they fit on one row (equal gaps, first pill on the panel's left edge, last pill on its right edge); the 24 px packing rule still decides stacking
+                            [v4] the shared VLM box reads '3B params' (both architecture rows blit the one sprite)
+                            [v6] the recap bracket reads 'forward passes on the action expert' (no '300M', as clip 3); the green row label is 'IMLE-VLA (ours) · cIMLE action head'; chip 1 is 'Reacts to a moving plate'
+                            [v8] big_caption line 2 -> 'up to 11x more actions per second, with 3x longer chunks' ('throughput' / 'horizon' are never defined; 'chunk' is clip 1's word)
+                            [v9] every y of 4.1's row content + 10 px (row_y 285 -> 295, rowA_y 257 -> 267, rowB_y 539 -> 549, chips_y 919 -> 929 and A's unused 735 -> 745), so the dimmed recap plate's top clears the v8 sub-line's descenders by 14 px instead of 4.  No timing and no text changed
+                            [v13] every y + 7 px more (row_y 302, rowA_y 274, rowB_y 556, chips_y 936, A's unused 752): the Medium 42 sub-line's descenders reach y 262, so 274 is the MINIMUM top that keeps the 12 px.  The chip row ends at 1032, 12 px above the caption box
+                            [v14] big_caption line 2 -> 'in simulation, executing 3x more of each chunk': the 11x / 3x figures are the LIBERO H = 30 result and the three chips beside them are the real-robot runs, so the line names its setting.  890 px against the slot's 1156 px region, still two lines; the two extra words move 4.1's out-point 13.00 -> 13.25 s by the clip's own reading rule
+                            [v10] the blocks of BOTH rows say 'Action head' and the brace 'forward passes on the action head' (one component, one name); chip 3 is '2.2x to 3.0x lower jerk'; big_caption is the FACT FIX -- 'running at 55 Hz, up to 11x more actions per second / executing 3x more of each chunk' (the paper's 3x is the executed prefix H, not chunk length), re-flowed over the slot's two lines because the note's single line is 1292 px against a 1156 px region
+                            [v2] big_stat 4.50 -> 3.50 and big_caption 3.50 -> 4.50 (the number before the lines derived from it)
+  src/imle_sec.py        <- teaser/clip2/teaser_imle/build_imle.py   source md5 1005d4c52788241bca44a9d3cae04e9a
+                            paths made absolute: HERE, CLIP2, REPO
+                            edits: BOX.y and INSET.y + 24 px; the seven beats re-timed (they drive build_schedule / SETTLE_T); its kicker, headline, caption box and closing fade dropped from render()
+                            [v2] DX_RECUT = 226 (the group centred, gutters 246|246) and INSET.y levelled with BOX.y; the 'noise space' label moved INSIDE the panel; shared_pair recoloured GREEN, given a reverse ramp at T0['direct'] and its tag moved to (ring -10, ring +60); beats re-timed learn 9.50/0.40, share 9.90/5.88, direct 15.78/6.56 so the plan's caption order 1->2->3 can play
+                            [v3] TAG_XY = (14, 85): the 'one data point' pill moved LEFT OF THE CURVE (the only place inside the panel wide enough for it) and joined to the ring by a 174 px leader in the section's own leader style.  DX_RECUT / DY_RECUT unchanged: the group is already centred in the 50..1870 content band
+                            [v4] SRC_H / CROP_Y / PY_UNIT: the box loses 25 px of EMPTY PLATE at each end (h 660 -> 610) with EXT's y half-range tightened by the same factor, so the pixels-per-data-unit is unchanged and every mark only moves up 25 px inside the box; DY_RECUT 24 -> 50 puts the panel at y 250..860 (4.2b's own panel top, margins 35 | 32); TAG_XY -> (14, 60); the share / direct beats re-timed for the two 18-frame caption holds
+                            [v7] TAG_ONE = 'one action' replaces the 'one data point' tag; the `direct` beat's hold + 0.30 s, so caption 3's two extra words keep their fades outside the reading time
+                            [v8] HEADLINE -> 'Samples are pulled onto the data manifold'; the `direct` beat's hold -> 2.00 s, the settled pulled-on state held after caption 2's box leaves (caption 3 is gone)
+                            [v10] unchanged (4.2a's captions live in the merge)
+                            [v11] the `direct` beat's hold 2.00 -> 0.30 s (with END_HOLD_42A in the merge): 4.2a cuts 0.30 s after caption 2's box leaves, as clips 1 and 2 do
+  src/closer.py          <- teaser/clip2/v9B/build_clip2_v9B.py   source md5 0027ddd7b8f3067a06aeee7252fd07a4
+                            paths made absolute: HERE, CLIP2
+                            edits: the closer's own kicker and headline blits dropped; its two coloured sub-lines kept
+                            [v3] the two coloured sub-lines are drawn INSIDE the clip's standard caption box (y 892..1044, r 22, plate (16,21,28) + hairline (78,90,106), the wider line + 110 px wide, the two-line block centred); the pi0.5 pill gets a 6 px opaque plate of the panel fill so the flow field's yellow samples cannot read through it
+                            [v13] PILL_SIZE = 48 and the pills' ink is FG (white); their coloured outlines, their plate fill and the opaque backing under the flow pill are unchanged
+                            [v7] the pills name the METHOD only -- LEFT_PILL 'flow matching', RIGHT_PILL 'IMLE' (the two densities are 1-D toys, not the two systems' action heads) -- and line 1 says 'never exactly on it' instead of 'cannot directly lie on it', so 'directly' is not doing two jobs in two adjacent lines
+                            [v11] RIGHT_IN = 1.5: the IMLE panel and its pill enter 1.5 s after the flow panel, so the page has ONE motion; each keeps the source's own entry ramp and the caption box below is untouched, so the segment's length is unchanged
+  src/partb/build.py     <- teaser/clip4/part2/v15/build.py   source md5 8d01a5ef8aaa72c002f7cb3e34fe1d15
+                            paths made absolute: REPO
+                            edits: CAPS -> the objective plate (equation PNG + phrase), CAP_SPLIT emptied, an `intro` beat added, frame_at draws eq_plate() instead of K.caption
+                            [v2] INTRO_ANIM 2.70 -> 4.70 (a 5.0 s hold); NOTE_HL -> one line 'these candidates sit on other modes'
+                            [v3] EQ_BOX is now the PANEL COLUMNS' own box (chrome4.OBS.x0 .. ACT_P.x1 = x 96..1824, 1728 px) instead of EQ_W + 110 (x 111..1809), so the plate's sides line up with the panels above it
+                            [v4] clip 2 v3's END frame ported as frame 0: MEAN_LINK_GAP / mean_marker_support / mean_link_start / MEAN_LINK_P0 / draw_mean_links_gapped / mean_state_gapped from teaser/reorder/clip2/v3/src/parta/build.py -- the X marker alone (no neutral star) with the four dashed links starting 12 px clear of its ink.  CAPS and NOTE_HL in clips 1-2's vocabulary ('sample', 'pair'); free's anim + 1.00 s; the compare beat's cIMLE pill outlined in K.GREEN with STEEL ink
+                            [v5] the gapped construction is parametric in the marker's radius and stroke (mean_marker_support(u, r, width) / link_gap(r) / link_start(p0, p1, r, width)), and the COMPARE beat's small 'regression (m = 1)' panel now draws frame 0's state at its own scale: MINI_R 13 / MINI_W 3, no sample under the X, links starting link_gap(13) = 9.18 px clear of its ink.  free's anim + 1.23 s (7 frames more than v4), so NOTE_HL gets its full 3.20 s
+                            [v6] frame 0 is CLIP 2 v4's end frame, not v3's: MEAN_TAG_DROP = 34.0 moves the 'mean' tag straight down (K.mean_tag_xy(..., dy=K.MEAN_TAG_DY + 34)) so the rose link no longer clips its upper-left corner, ported from teaser/reorder/clip2/v4/src/parta/build.py, with GAP_LABEL / box_seg_dist / tag_link_clearance for the measurement.  The compare miniature draws no tag, so nothing scales there
+                            [v7] TAG_PAIR -> 'one action'; T4['step'] 0.40 -> 0.60 s and the `again` beat's anim now FOLLOWS T4 (start + N_POOLS x step = 3.05 s) instead of a hand-set 2.30; INTRO_ANIM 4.70 -> 3.30 (a 3.60 s hold)
+                            [v8] unchanged (the latent plate's lit set moved in src/eq_objective.py)
+                            [v10] the `again` and `compare` beats get the phrases they lacked; `again`'s hold follows the reading rule to 3.60 s (the 7-word phrase's rule beats its 3.35 s animation)
+                            [v11] re-timing only: T1['clear'] 0.90 -> 0.40; T3 dim/jump/note 2.20/2.80/2.80 -> 0.80/1.40/1.40 (jump2 3.65 -> 2.25); T5['ring0'] 2.80 -> 1.20; INTRO_ANIM 3.30 -> 1.70 (a 2.00 s hold); `free` and `cover` anim -> 4.18 (5.00 s beats); `compare` anim 4.20 -> 3.30 (a 3.60 s hold)
+                                 (the pools themselves, their seeds, their sigmas and the draw_pool call are the source's: only the time each one is held changed)
+                            [v13] PHRASE_SIZE / PHRASE_INK 48 GREY -> 54 WHITE (LEGIBILITY_v1.md); the plate cannot grow, so EQ_PAD_T 8 -> 6 and EQ_PAD_B 10 -> 7 give the taller line its 5 px, with EQ_GAP still 10
+                            [v14] the PHRASE BAND: PHRASE_OUT_F / PHRASE_IN_F = 6 / 6, anchored to the frame the beat starts on -- the outgoing phrase leaves over 6 frames, the slot is EMPTY for one frame, the incoming one arrives over 6 (v13 cross-faded them, so two sentences shared one baseline for 9 frames).  The equation's own lit-state cross-fade is untouched
+                            [v15] EQ_PAD_T 6 -> 5, EQ_PAD_B 7 -> 6, EQ_GAP 10 -> 12: at Medium 54 a 10 px gap read as one block of type in two rows, and a plate edge has nothing to crowd while the gap has a neighbour on both sides.  The plate is unchanged (y 892..1060 = CAP_Y1 + 16); the equation moves up 1 px and the phrase down 1, and the merge asserts the per-beat ink-to-cap-top gap (>= 12 px; worst 12 on `latent`, 13 elsewhere)
+  src/partb/chrome4.py   <- teaser/clip4/part2/v15/chrome4.py   source md5 8899b261d489f6d28c8ae1dc6effd73d
+                            paths made absolute: REPO
+                            edits: KICKER, WPM 130 -> 150
+                            [v3] KICKER -> 'IMLE-VLA · 4 / 4 · ONE PASS, EVERY MODE'
+                            [v4] GREEN = C1.GREEN, and an optional text_colour on _plate() / tag() so a pill can take a coloured OUTLINE without colouring its words (the default is the old behaviour).  Both copies edited identically; still byte-identical
+  src/partb/chrome4x.py  <- teaser/clip4/part2/v15/chrome4x.py   source md5 5e203a7d2ee074873d9153b7f0c6e63f
+                            paths made absolute: -
+                            edits: verbatim
+  src/partb/scene4.py    <- teaser/clip4/part2/v15/scene4.py   source md5 4067296dc7796638742eee8803343a09
+                            paths made absolute: -
+                            edits: verbatim
+  src/partc/build.py     <- teaser/clip4/part3/v7/build.py   source md5 91f6cb38124882763b5e9fa347f70c50
+                            paths made absolute: REPO, FOOTAGE_DIR
+                            edits: HEAD; WPM 130 -> 150; the `setup` beat dropped; CAPS are the plan's and `both` is captioned; left_src frozen at N_SRC-1; elements() has the left end furniture from frame 0 and no ghost or object tag; R_START 84 -> 24; ELEMENTS re-written
+                            [v2] CAPS[0] shortened to 9 words; the RIGHT panel's 'sped up' tag is up from frame 0, so both panels carry the same base furniture
+                            [v3] CAPS are the author's: 'From clip 2: three modes; regression closed on the empty plate.' and 'One pass, one mode: ...'; elements() uses base = 1.0, so the plates, both 'simulation' and both 'sped up' pills, the task pill and the left recap's status chip are up on the segment's FIRST frame and rise with the page over the merge's 9-frame dip ramp (only the right panel's 'success' chip still arrives with its rollout)
+                            [v4] the right caption is 'One z, one mode: ...'; CAP_PAD_F = 18 pads every hold by 18 frames so each caption's 9-frame fade-in and 7-frame fade-out fall outside its reading time ('rule' still reports the bare rule)
+                            [v7] the right caption is 'Each z picks a mode: the policy commits to one bottle and places it.' -- the paper draws a fresh z per forward pass, so 'One z, one mode' claimed a fixed z the footage does not document
+                            [v8] CAPS[0] -> None (the frozen recap draws NO caption and is held LEFT_HOLD_F = 60 f) and CAPS[1] says 'a bottle'; BEATS builds the two beats separately, since a capless beat has no fades to make room for
+                            [v10] CAPS[1] says 'the generator', not 'the policy' ('policy' is never defined in the series; the sub-label says 'toy generators')
+                            [v11] TAIL_F 21 -> 30 (a 1.00 s closing hold) and cap_alpha drops the fade-out for the LAST beat, so the closing caption stays up through the hold and goes out with the whole frame in the fade (clip 1's closing rule)
+                            [v12] R_START 24 -> 54 (the right rollout starts 1.00 s later, so the 'success' chip lands later and the static tail before `both` loses that second; the beat's length is set by the caption, not the animation, so it does not move) and the LAST beat's span drops its CAP_OUT_F -- since v11 that caption never fades out on its own, so those 7 frames were an unused fade-out slot
+                            [v13] unchanged (the chip and plate sizes live in src/partc/page3.py)
+                            [v14] LEFT_HOLD_F 60 -> 30: the frozen recap carries no caption, so the right beat's caption and rollout both arrive 1.00 s earlier; R_START, the chip, `both`, the closing hold and the fade all follow from their own beat's f0 and are unchanged
+  src/partc/chrome4.py   <- teaser/clip4/part3/v7/chrome4.py   source md5 8899b261d489f6d28c8ae1dc6effd73d
+                            paths made absolute: REPO
+                            edits: KICKER, WPM 130 -> 150
+                            [v3] KICKER -> 'IMLE-VLA · 4 / 4 · ONE PASS, EVERY MODE'
+                            [v4] GREEN = C1.GREEN, and an optional text_colour on _plate() / tag() so a pill can take a coloured OUTLINE without colouring its words (the default is the old behaviour).  Both copies edited identically; still byte-identical
+  src/partc/page3.py     <- teaser/clip4/part3/v7/page3.py   source md5 e9004bdc83b64dcf5f4436ab46b9fe9a
+                            paths made absolute: -
+                            edits: verbatim through v12
+                            [v14] unchanged
+                            [v13] CHIP_SIZE / CHIP_HEIGHT / CHIP_PAD 40 / 60 / 24 -> 52 / 78 / 31 and PLATE_SIZE / PLATE_HEIGHT / PLATE_PAD 34 / 50 / 16 -> 48 / 70 / 23, keeping each class's pad : size ratio; the corner radius is h/2 by construction, so the shape follows.  TAG_SIZE / TAG_HEIGHT (the 'simulation' / 'sped up' decoration) are untouched
+  src/eq_objective.py    <- teaser/reorder/common/eq_objective.py   [v2, new]
+                            paths made absolute: OUT -> ./eq
+                            edits: runs_for() split norm_l|cand_a|z|cand_b|resid and tail_i|tail_j|tail_z with the trimmed spaces restored as explicit gaps; STATES['draw'] lights {cand_a, z, cand_b, tail_j}; the tail-ink rule keyed on key.startswith('tail'); only the 'short' form is rendered.  The SHARED file in teaser/reorder/common/ is deliberately NOT edited.
+                            [v8] STATES['latent'] lights {z, tail_z}: the tail's z_ij ~ N(0, I) lights WITH the z inside the norm, so the beat's picture and the equation point at the same symbol and at where it comes from.  All six PNGs re-rendered, still 1588 x 92
+                            [v10] STATES['cover'] -> {mean, tail_i} and STATES['compare'] -> {min} (the compare beat's base ink stays FG3).  All six PNGs re-rendered, still 1588 x 92
+                            [v13] unchanged: the equation plates are the same six PNGs at the same size; only the PHRASE under them grew (in src/partb/build.py)
+  src/eq/short_*.png     <- rendered by src/eq_objective.py   [v2; v1 copied teaser/reorder/common/eq_out/]
+                            paths made absolute: -
+                            edits: the six objective states, 1588 x 92 px (v1: 1641 x 92), re-rendered with the finer run split
+
+the joins: four dips of the whole frame to the background, the kicker band excluded.  The last one is 3 down + 9 up --
+  those 9 frames are the plan's "both panels fade in over 0.3 s" for 4.4, done with the dip mechanic that already exists.
+
+global timeline:
+  seg         in      out  frames  headline
+  4.1       0.00    13.27     398  'IMLE-VLA: one forward pass'  + sub-label 'cIMLE: conditional Implicit Maximum Likelihood Estimation'
+  dip      13.27    13.47       6  (dip 3 down + 3 up)
+  4.2a     13.47    30.13     500  'Samples are pulled onto the data manifold'
+  dip      30.13    30.33       6  (dip 3 down + 3 up)
+  4.2b     30.33    38.73     252  'Samples are pulled onto the data manifold'
+  dip      38.73    38.93       6  (dip 3 down + 3 up)
+  4.3      38.93    77.70    1163  'cIMLE covers the modes'  + sub-label 'conditional Implicit Maximum Likelihood Estimation'
+  dip      77.70    78.10      12  (dip 3 down + 9 up)
+  4.4      78.10    93.43     460  'Regression vs cIMLE in simulation'  + sub-label 'toy generators trained on multimodal demonstrations'
+
+beats, global times, and the words on screen:
+  seg   beat            in      out  words  caption
+  4.1   recap         0.00     1.50      7  (no caption box; the chips carry the words)
+  4.1   transition     1.50     2.00      2  (shrink and dim)
+  4.1   green row     2.15     3.50      6  row: 'IMLE-VLA (ours) · cIMLE action head'
+  4.1   stat          3.50     5.50     24  3.67x faster inference / running at 55 Hz, up to 11x more actions per second / in simulation,...
+  4.1   chips         5.50    13.25     14  Reacts to a moving plate / Less stop-and-go / 2.2x to 3.0x lower jerk
+  4.2a  pull         13.67    22.97     12  In training, IMLE pulls a sample onto each action, again and again.
+  4.2a  share        22.97    29.85     11  No invertibility to preserve: many z may map to one action.
+  4.2b  closer       30.33    38.73     23  Flow matching: dense around the manifold, never exactly on it / IMLE: learns the manifold dir...
+  4.3   intro        38.93    41.45      5  eq intro    the cIMLE objective
+  4.3   draw         41.45    48.57     10  eq draw     m samples per pair, here m = 5
+  4.3   match        48.57    54.29      7  eq match    only the nearest sample counts
+  4.3   free         54.29    59.29      7  eq match    the others are not penalized
+  4.3   again        59.29    63.41      9  eq match    training repeats: samples tighten onto the modes
+  4.3   cover        63.41    68.41      8  eq cover    every pair: no mode is dropped
+  4.3   latent       68.41    73.42      7  eq latent   different z reach different modes
+  4.3   compare      73.42    77.54      9  eq compare  m = 1 removes the min: regression
+  4.4   left         78.10    79.10      2  (no caption box)
+  4.4   right        79.10    86.63     14  Each z picks a mode: the generator commits to a bottle and places it.
+  4.4   both         86.63    91.93      9  One forward pass per chunk, and every mode kept.
+
+the reading rule: hold >= max(1.8, 0.8 + words x 60/150) s, unless the beat's own animation needs longer.
+  seg   beat         hold    rule  set by
+  4.2a  pull         8.78    5.60  the animation
+  4.2a  share        6.36    5.20  the animation
+  4.3   intro        2.00    2.00  the words
+  4.3   draw         6.60    4.00  the animation
+  4.3   match        5.20    2.80  the animation
+  4.3   free         4.48    2.80  the animation
+  4.3   again        3.60    3.60  the words
+  4.3   cover        4.48    3.20  the animation
+  4.3   latent       4.49    2.80  the animation
+  4.3   compare      3.60    3.60  the words
+  4.4   left         1.00    0.00  the animation
+  4.4   right        7.00    6.40  the words (+ 18 f so the fades clear it)
+  4.4   both         5.00    4.40  the words (+ 18 f so the fades clear it)
+
+4.1  element times (seconds into the segment), from src/arch.py STORYBOARD["arch"]:
+     phase A  the whole pi0.5 row is COMPLETE at frame 0 (drawn at t = +inf), held 1.50 s
+      1.50  the transition starts: the row scales to 0.60, dims to 0.45 and slides to y 274
+      2.15  row_label_left  'IMLE-VLA (ours) · cIMLE action head'
+      2.25  vlm
+      2.35  kv
+      2.50  blocks_start
+      4.50  big_caption  'running at 55 Hz, up to 11x more actions per second / in simulation, executing 3x more of each chunk'
+      3.50  big_stat  '3.67x faster inference'
+      5.50  chip  'Reacts to a moving plate'
+      6.50  chip  'Less stop-and-go'
+      7.50  chip  '2.2x to 3.0x lower jerk'
+
+4.2a element times, from src/imle_sec.py (the beats drive build_schedule()):
+      0.50 ..  2.30  draw
+      2.30 ..  4.90  pull
+      4.90 ..  6.90  again
+      6.90 ..  9.50  run
+      9.50 ..  9.90  learn
+      9.90 .. 16.38  share
+     16.38 .. 16.68  direct
+     the 14 pull steps: 2.90, 5.20, 6.95, 7.22, 7.49, 7.73, 7.97, 8.19, 8.40, 8.60, 8.79, 8.97, 9.14, 9.30
+      9.80  the settled pool cross-fades in (SETTLE_T), 0.35 s
+     10.50  the shared pair is ringed (T0["share"] + 0.6), 0.5 s
+
+4.2b  both panels and their pills enter at t = 0, the caption box and its two coloured lines at t = 0.35 (entry());
+      held to 8.40 s.  The box is the clip's own: x 217..1702, y 892..1044, r 22; the pi0.5 pill sits on a 6 px opaque plate.
+
+4.3  element times per beat, from src/partb/build.py:
+     intro    (the incoming picture, held: beat draw at u = 0)
+     draw     [(0.4, "part 1's end state clears -- v4: the X marker on the mean, its tag and its four gapped dashed links, with NO star under the marker -- and the cloud stops being grey"), (1.5, 'the featured pair lights up: its triangle, its own data point and the tag "one action"'), (2.3, 'its 5 latents light up in the noise panel, together'), (2.9, "they travel through G together and land as 5 stars in that pair's colour"), (4.0, 'thin links tie those 5 samples to that one data point'), (4.8, 'the highlight and the tag leave'), (5.2, 'the other three pairs arrive, 0.25 s apart, each in its own colour')]
+     match    [(0.5, 'every pair but the featured one dims'), (1.3, "the nearest of the featured pair's own 5 gets the ring and the solid link"), (1.9, 'it slides 0.55 of the way toward its own data point'), (2.8, 'the view widens to all four pairs'), (3.5, "every pair's own nearest sample is ringed and linked"), (4.1, 'and pulled, all four together')]
+     free     [(0.8, 'everything in the panel except the four data points dims to 35%'), (1.4, "the 3 highlighted samples -- the featured pair's own, chosen by the rule, on three different foreign modes -- jump 1.0 -> 1.55 -> 1.0 over 0.60 s, together"), (1.4, 'the note "these samples sit on other modes" fades in at the bottom right'), (2.25, 'they jump a second time, from the 1.2x they now rest at, and stay big and bright to the end of the beat')]
+     again    [(0.05, 'fresh pools of 20 coloured stars, 0.60 s each, each one tighter on the modes than the last')]
+     cover    [(0.5, 'the last pool is held: tight multi-coloured clusters on all four modes'), (1.2, 'each data point rings its nearest of its own 5 and links to it, one pair every 0.80 s')]
+     latent   [(0.4, 'the actions panel splits, as it will again in the comparison'), (1.0, 'left: the noise cloud in the colour of the mode each z maps to; right: the same samples'), (1.7, 'three latents light up, 0.65 s apart, and travel to a star on a different mode each')]
+     compare  [(0.0, 'the two panels hand over: regression on the left with the mean marker alone and its gapped links (v5), cIMLE on the right'), (1.2, 'their labels, "regression (m = 1)" and "cIMLE (m = 5)"')]
+
+4.4  element times per beat, from src/partc/build.py ELEMENTS:
+     left   +   0 f  BOTH panels are up, FROM THIS FRAME, with the SAME base pills ("simulation" + "sped up") and their own plates -- they rise with the page over the merge's 9-frame dip ramp, not over 9 frames of their own (v3): the LEFT one FROZEN on its end frame (source 831, the end of the regression rollout) with its grey "task failed" chip, the RIGHT one on its start frame, dimming to 45% over 9 frames because its own beat has not come yet.  Nothing else animates in this beat: the clip 2 recap is a still.
+     right  +   0 f  the LEFT panel dims to 45% over 9 frames
+     right  +  54 f  the RIGHT panel plays the phase-wise map (approach 4x, descend 4x, close 4x, lift 4x, carry 8x, lower 16x, release 4x, retreat 12x), 99 output frames = 3.30 s, straight through grasp, carry and place with NO hold
+     right  + 153 f  the green chip "success"
+     both   +   0 f  both panels return to full brightness on their end frames with their chips, under the closing caption; then the closing hold and the fade
+
+THE ASSERTION TABLE:
+  kicker pixels identical across the seam 4.1>4.2a                 max channel diff 0                                   OK
+  kicker pixels identical across the seam 4.2a>4.2b                max channel diff 0                                   OK
+  kicker pixels identical across the seam 4.2b>4.3                 max channel diff 0                                   OK
+  kicker pixels identical across the seam 4.3>4.4                  max channel diff 0                                   OK
+  background identical in every source module                      4.1 (11, 15, 20) | 4.2a (11, 15, 20) | 4.2b (11, 15, 20) | 4.3 (11, 15, 20) | 4.4 (11, 15, 20) OK
+  kicker string identical in every module that draws one           'IMLE-VLA · 4 / 4 · ONE PASS, EVERY MODE'            OK
+  one chrome4.py, byte-identical in src/partb and src/partc        c0f0b58ce793                                         OK
+  caption box y range identical in 4.2a, 4.2b and 4.4              892..1044 | 892..1044 | 892..1044                    OK
+  4.2b the closer's lines are in the standard caption box (r 22, 55 px pads) box x 217..1702 y 892..1044, r 22, pads 55.5 | 54.5, lines 1375 px and 746 px OK
+  4.2b the two lines are centred in the caption box                block 138 px in 152 px, top pad 7, bottom pad 7      OK
+  4.2b the pi0.5 pill has an opaque plate under it (6 px padding)  plate 364 x 93, opaque True, pill 352 x 81           OK
+  caption max line width identical (1728 px)                       1728 | 1728                                          OK
+  caption type identical (Medium 54)                               54 | 54                                              OK
+  caption padding, 1 line, identical across 4.2a and 4.4           4.2a 55.0/57.0 | 4.2a 55.0/57.0 | 4.4 55.0/57.0      OK
+  caption padding, 2 lines, identical across 4.4 (leading 64 px)   4.4 55.0/25.0 lead 64                                OK
+  every text caption is 1 or 2 lines (v6: all six take one)        1 line: 3 captions, 2 lines: 1 caption               OK
+  4.3's equation plate: the caption plate grown 16 px downward (README_eq.md allows 16) y 892..1060, x 96..1824                              OK
+  4.3's plate sides line up with the panel columns                 plate x 96..1824 | obs panel x0 96, actions panel x1 1824 (same rrect, same stroke) OK
+  every headline ink <= 1728 px at Bold 76                         widest 1443 px                                       OK
+  every text caption <= 2 lines and <= 1728 px                     widest 1592 px, most lines 2                         OK
+  4.3's equation image <= 1728 px wide                             1588 x 92 px                                         OK
+  4.1 chips: ONE row inside the 1824 px row width                  658 + 496 + 599 = 1801 px packed, gap 35.5 px, ends x 1872 y 1032 OK
+  4.1 chips are DISTRIBUTED: first on the panel's left edge, last on its right x 48 .. 1872, panel x 48 .. 1872, equal gaps 35.5 px OK
+  4.1 stat block (number + 2 lines) fits its 246 px slot           242 px tall (4 spare), widest line 997 of 1156 px    OK
+  4.2a "noise space" label is INSIDE its panel, below the headline ink label x 264..485 y 262..314, panel x 246..686, headline ink ends y 215 OK
+  4.2a the two panels are centred (equal side gutters)             group x 246..1674, gutters 246 | 246 px              OK
+  4.2a the group is centred in the 1820 px content band (x 50..1870) group x 246..1674 (w 1428), want x0 246              OK
+  4.2a the two panels share one top edge                           box y 250, inset y 250                               OK
+  4.2a the panel has >= 25 px of air above AND below it            headline ink 215 -> panel 250..860 -> caption box 892, margins 35 | 32 px OK
+  4.2a's panel top is 4.2b's panel top (no jump at the seam)       4.2a y 250 | 4.2b y 250                              OK
+  4.2a the crop keeps the source's pixels per data unit exactly    423.0769 px/unit in a 610 px box (source 660 px, 25 px of empty plate cropped off each end) OK
+  4.2a the crop loses no mark that was ever visible                every curve point, data dot and sample lies in y 100..563 of the 610 px box, 0 within 6 px of an edge OK
+  4.2a "one data point" tag covers no curve point, dot or sample   tag x 14..317 y 60..132 (panel-local), nearest mark 13.9 px away OK
+  4.2a the tag is LEFT of the curve at its own height              tag right edge x 317, leftmost curve x over that band 332 OK
+  4.2a the tag's leader is short and crosses nothing               leader 174 px from the pill to the ring, nearest mark 20.4 px away OK
+  4.2a the tag is inside the data box, 12 px clear of its border   tag x 14..317 y 60..132 in a 976 x 610 box           OK
+  4.4 left panel frozen on its END source frame                    source frames shown: [831]                           OK
+  4.4 both panels carry the same base pills ON THE FIRST FRAME     left ['simulation', 'sped up'] | right ['simulation', 'sped up'] OK
+  4.4 only the status chip differs on the first frame (the recap has its own) left ['chip', 'plate', 'speed', 'tag'] | right ['plate', 'speed', 'tag'] OK
+  4.4 draws no ghost and no object tag anywhere                    0 obj elements on every 3rd frame                    OK
+  4.4 the closing caption stays up through the 1.00 s hold and the 0.50 s fade caption alpha at the last hold frame 1.00, at the fade's first 1.00, at the last frame 1.00 (the frame itself fades) OK
+  the clip is inside the plan's 90-125 s window (amended in v11)   93.43 s = 2803 frames @ 30 fps                       OK
+  4.3 equation inks vs the caption plate (>= 4.5:1)                lit 8.9:1 | base 9.3:1 | dim 4.7:1                   OK
+  4.2b the closer's two lines get their reading time               hold from entry 8.05 s, rule 6.80 s (15 words)       OK
+  4.1 the stat block and the chips get their reading time          stat needs 9.60 s (to 13.10), chips 5.60 s (to 11.45), segment out 13.25 s OK
+  4.3 equation subscript letters >= 24 px (the plan asks 26 -- NOTES.md) main glyph 26 px, 10 lit letters, smallest 24 px, sizes 24 / 26 / 31 / 34 / 35 / 39 / 42 OK
+  4.1 both architecture rows label the backbone "3B params"        "3B params" x2, "2B params" x0 in src/arch.py; one vlm sprite, blitted by 2 rows OK
+  4.1 goes out at 13.25 s, the minimum its own reading rule allows (v13 13.00) out at 13.25 s (v13 13.00, v5 15.55, v3 12.55) = max(stat 13.10, chips 11.45, floor 12.85) + 0.15; last chip fully in at 7.85 s, finished hold 5.40 s OK
+  4.1 the 11x / 3x line names its setting, and line 1 is unchanged line 2 'in simulation, executing 3x more of each chunk' | line 1 'running at 55 Hz, up to 11x more actions per second' OK
+  every 4.2a and 4.4 caption holds >= its rule + both fades (0.52 s) worst margin 0.60 s                                  OK
+  4.3 frame 0: the X marker ALONE, no neutral star under it        near-white ink in a 20 px disc: frame 0 269 px, the marker alone 269 px OK
+  4.3 frame 0: every dashed link starts 12 px clear of the marker's ink clearances 12.0 / 12.0 / 12.0 / 12.0 px (link starts 37 / 38 / 33 / 38 px from the mean) OK
+  4.3 frame 0: the "mean" tag is 34 px lower (clip 2 v4) and clear of every link tag box x 1168..1281 y 597..643, nearest link clears it by 12.1 px of ink (12 asked) OK
+  4.3 frame 0: the tag is still centred under the marker, only lower tag x 1224.2 vs marker x 1224.2, tag cy 619.8 = marker cy 525.8 + 118 + 34 OK
+  4.1 the four strings the series reviews asked for, and one component name the recap bracket 'forward passes on the action head' | the green row label 'IMLE-VLA (ours) · cIMLE action head' | chip 1 'Reacts to a moving plate' | chip 3 '2.2x to 3.0x lower jerk' | the blocks say "Action head" (0 "expert" left in the drawn strings) OK
+  4.1 the sub-line clears the recap plate by >= 12 px (v9: the rows moved down 10 px) sub-line ink y 221..262, plate top y 274, gap 12 px (v8: 4 px) OK
+  4.1 the chip row still clears the caption box (bottom <= 1044)   chips y 936..1032, caption box top 1044, 12 px of air OK
+  every class LEGIBILITY_v1.md resizes is at its new size          4.4 status chip 52/78 | 4.4 name plate 48/70 | the sub-line 42 | 4.3 phrase 54 | 4.2b pill 48 OK
+  ... and at its new ink (the sub-line was already GREY in this clip) 4.3 phrase (238, 241, 246) | 4.2b pill (238, 241, 246) | the sub-line (176, 186, 200) OK
+  4.3's plate holds the taller phrase without growing (892..1060)  equation y 897..989, phrase ink 1001..1054; top pad 5, gap 12, bottom pad 6 OK
+  4.3 the equation ink clears the phrase cap top by >= 12 px on EVERY beat pads 5 / gap 12 / 6; gaps 13/13/13/13/13/13/12/13 px on 8 beats (worst latent) OK
+  every sub-line clears the headline descenders by >= 6 px and is <= 1728 px 4.1 y 221..262 w 1113, gap 6 | 4.3 y 221..262 w 975, gap 6 | 4.4 y 221..262 w 1001, gap 6 OK
+  4.3 the phrase changes by the band rule: 6 f out, empty, 6 f in (0.40 s) 7 beat changes, frames with TWO phrases: 0, with an empty slot: 1/1/1/1/1/1/1 OK
+  4.3 ... and the slot is EMPTY on exactly the seam frame of every change the frame before 6749..16338 px of ink, ON THE SEAM 0 px, the frame after 9145..16338 px OK
+  4.4 the frozen recap is held 1.00 s and the right beat follows it at once left 30 f (v13 60), right f0 30, its rollout at 84 f, caption in at 39 f OK
+  4.3's `free` note gets its full reading time (v5: +7 f on top of v4's +30) 6 words, visible 3.30 s (v4 2.97, v3 1.97); the 150 wpm rule asks 3.20 s OK
+  4.3 the compare beat's regression panel uses frame 0's gapped state mini marker r 13 stroke 3, clearances 9.18 / 9.18 / 9.18 / 9.18 px (asked 9.18 = 12 x 13/17) OK
+  4.3 the compare beat's regression panel has no sample under its X either near-white ink in a 15 px disc: the frame 199 px, the mini marker alone 199 px OK
+  the WHOLE clip says "sample" / "z" / "pair" / "action", never "data point" or "candidate" 62 drawn strings in 8 segments scanned, 0 use a banned word OK
+  ... and G's OUTPUT is never called an action (v8): it is always a "sample" 24 banned phrases checked on all 62 strings, 0 hit; the 7 strings that name G's output all say "sample" OK
+  every caption's ink <= 1618 px, so the plate keeps its 55 px side pads 4 captions, widest 1592 px (4.2a 'In training, IMLE pulls a sample o...'); 1 given an explicit 2-line break in 2 design modules OK
+  4.3 the cIMLE pill is outlined in the series green, regression in steel cIMLE edge: 108 green / 0 steel of 434 px | regression edge: 0 green / 108 steel of 434 px OK
+  headline band at the dip 4.1>4.2a is ONE side blended to BG (darkest 16%) max diff 0, 6 frames                                 OK
+  headline band at the dip 4.2a>4.2b is HELD, not dimmed (the headline is the same on both sides) band max 246 -> 246 -> 246 -> 246 -> 246 -> 246 -> 246 -> 246 across the seam, the two sides differ by 0 OK
+  headline band at the dip 4.2b>4.3 is ONE side blended to BG (darkest 16%) max diff 0, 6 frames                                 OK
+  headline band at the dip 4.3>4.4 is ONE side blended to BG (darkest 3%) max diff 0, 12 frames                                OK
+  every headline change happens inside a dip of >= 6 frames        4.1>4.2a, 4.2b>4.3, 4.3>4.4                          OK
+  nothing touches the frame edge (2 px border == BG)               worst 0 at frame None, 164 frames sampled before the fade OK
+  ... and inside the closing fade the border is never brighter than BG worst +0 over 5 frames                               OK
+
+the parts' own tables (nn_report, highlight_report, jump_report, note_report,
+pull_report, split_report for 4.3; geometry_report, sibling_report, padding_report,
+gaps_report, rhythm_report, screen_text_report, remap_report, overlap_report and
+selection_report for 4.4) are unchanged and live in the source folders; ghost_report
+went with 4.4's dropped `setup` beat (NOTES.md).
