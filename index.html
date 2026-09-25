@@ -116,6 +116,22 @@
       </div>
     </section>
 
+    <!-- ====== OVERVIEW FIGURE ====== -->
+    <section class="hero teaser">
+      <div class="container is-max-widescreen">
+        <div class="hero-body">
+          <figure class="image overview-figure" style="max-width:1400px; margin-left:auto; margin-right:auto;">
+            <img src="static/images/overview.png" alt="Overview of IMLE-VLA: the frozen VLM backbone feeds into a single-step cIMLE action head (1 forward pass, 55 Hz) instead of a 10-step flow-matching head (15 Hz), yielding a 3.7x speedup.">
+          </figure>
+          <p class="has-text-centered overview-caption">
+            <strong>The problem &amp; our solution.</strong>
+            Current VLAs couple a pretrained VLM with an iterative action head that runs 10 sequential denoising steps per action chunk.
+            IMLE-VLA replaces this with a <em>single-step</em> cIMLE generator&mdash;same VLM backbone, 1 forward pass instead of 10, yielding a <strong>3.67&times; speedup</strong>.
+          </p>
+        </div>
+      </div>
+    </section>
+
     <!-- ====== ABSTRACT ====== -->
     <section class="section hero is-light">
       <div class="container is-max-desktop">
