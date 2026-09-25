@@ -25,6 +25,8 @@
   <script defer src="static/js/fontawesome.all.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script defer src="static/js/index.js"></script>
+  <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]]}};</script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
   <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
@@ -81,7 +83,7 @@
 
               <div class="publication-links" style="margin-top:1rem;">
                 <span class="link-block">
-                  <a href="#" class="external-link button is-normal is-rounded is-dark">
+                  <a href="https://arxiv.org/abs/2609.10915" class="external-link button is-normal is-rounded is-dark">
                     <span class="icon"><i class="fas fa-file-pdf"></i></span><span>Paper</span>
                   </a>
                 </span>
@@ -97,17 +99,18 @@
       </div>
     </section>
 
-    <!-- ====== OVERVIEW FIGURE ====== -->
+    <!-- ====== TEASER VIDEO (the overview figure is the frame shown before it plays) ====== -->
     <section class="hero teaser">
       <div class="container is-max-widescreen">
         <div class="hero-body">
-          <figure class="image overview-figure" style="max-width:1400px; margin-left:auto; margin-right:auto;">
-            <img src="static/images/overview.png" alt="Overview of IMLE-VLA: the frozen VLM backbone feeds into a single-step cIMLE action head (1 forward pass, 55 Hz) instead of a 10-step flow-matching head (15 Hz), yielding a 3.7x speedup.">
-          </figure>
+          <div style="max-width:1400px; margin-left:auto; margin-right:auto;">
+            <video id="teaser-video" controls playsinline preload="metadata" poster="static/images/overview.png" style="width:100%; aspect-ratio: 16 / 9; border-radius: 12px; background:#0b0f14;">
+              <source src="static/videos/imle_vla_teaser.mp4" type="video/mp4">
+            </video>
+          </div>
           <p class="has-text-centered overview-caption">
-            <strong>The problem &amp; our solution.</strong>
-            Current VLAs couple a pretrained VLM with an iterative action head that runs 10 sequential denoising steps per action chunk.
-            IMLE-VLA replaces this with a <em>single-step</em> cIMLE generator&mdash;same VLM backbone, 1 forward pass instead of 10, yielding a <strong>3.67&times; speedup</strong>.
+            <strong>Five-minute teaser.</strong> The setting, why regression collapses, why flow matching is slow and jerky,
+            IMLE-VLA on the real robot, and how conditional IMLE works.
           </p>
         </div>
       </div>
@@ -146,6 +149,56 @@
     <!-- ============================================================ -->
     <!--  SECTION 1: THE SPEED STORY                                  -->
     <!-- ============================================================ -->
+    <!-- ====== WHY REGRESSION COLLAPSES / WHY FLOW MATCHING IS JERKY / HOW cIMLE WORKS ====== -->
+    <section class="section">
+      <div class="container is-max-widescreen">
+        <h2 class="title is-3 has-text-centered">Why not a regression head?</h2>
+        <figure class="image" style="max-width:1300px; margin:0 auto;">
+          <img src="static/images/regression_2d.png" alt="One observation with two valid actions: a regression head can only output one action, so its optimum is the mean, an invalid action.">
+        </figure>
+        <div class="content has-text-justified" style="max-width:900px; margin:1.25rem auto 0;">
+          <ul>
+            <li>A regression head learns to map each observation to one action, minimizing
+              \( \mathcal{L}_{\mathrm{reg}} = \tfrac{1}{n}\sum_{i=1}^{n} \lVert G_{\theta}(z_i \mid o_t^{(i)}) - A_{\mathrm{gt}}^{(i)} \rVert_2^2 \).</li>
+            <li>However, given the observation there is more than one valid action.</li>
+            <li>The head cannot map one observation to multiple actions, hence its optimum is the <strong>mean of the actions</strong>: an invalid action. This is why VLAs use multimodal action generators such as flow matching.</li>
+          </ul>
+        </div>
+
+        <h2 class="title is-3 has-text-centered" style="margin-top:3rem;">&pi;<sub>0.5</sub> is jerky because of flow matching</h2>
+        <figure class="image" style="max-width:1300px; margin:0 auto;">
+          <img src="static/images/jerk_flow.png" alt="Noise space, an invertible flow, the ambient action space with the thin data manifold, and a zoom showing samples close to the manifold but not on it.">
+        </figure>
+        <div class="content has-text-justified" style="max-width:900px; margin:1.25rem auto 0;">
+          <ul>
+            <li>Data lives on a thin, lower-dimensional manifold inside the ambient action space.</li>
+            <li>For samples to lie on the manifold directly, the flow must compress noise from the ambient space.</li>
+            <li>Flow is an invertible map: hence it cannot compress samples onto the thin data manifold. IMLE is not invertible, hence its samples lie on the data manifold directly.</li>
+          </ul>
+        </div>
+
+        <h2 class="title is-3 has-text-centered" style="margin-top:3rem;">How conditional IMLE works</h2>
+        <div class="columns is-vcentered">
+          <div class="column is-half">
+            <figure class="image">
+              <img src="static/images/cimle_steps.png" alt="cIMLE in four steps: sample m candidates per demonstration, assign the nearest and pull it toward the ground truth, the others are not penalized and can explore other modes, after training every ground truth has a close candidate.">
+            </figure>
+          </div>
+          <div class="column is-half content has-text-justified">
+            <ol>
+              <li><strong>Sample.</strong> For each demonstration pair \((o_t^{(i)}, A_{\mathrm{gt}}^{(i)})\), draw \(m\) noise vectors and generate \(m\) candidates
+                \( \hat{A}_{i,j} = G_{\theta}(o_t^{(i)}, z_{i,j}) \).</li>
+              <li><strong>Assign.</strong> From the pair's candidate set, select the nearest neighbour to \(A_{\mathrm{gt}}^{(i)}\):
+                \( j^{*}(i) = \arg\min_{j} \lVert \hat{A}_{i,j} - A_{\mathrm{gt}}^{(i)} \rVert_2^2 \).</li>
+              <li><strong>Update.</strong> Minimize the distance between each \(A_{\mathrm{gt}}\) and its nearest candidate, averaged over the \(n\) pairs:
+                \( \mathcal{L}_{\mathrm{cIMLE}} = \tfrac{1}{n}\sum_{i=1}^{n} \lVert \hat{A}_{i,j^{*}(i)} - A_{\mathrm{gt}}^{(i)} \rVert_2^2 \).</li>
+            </ol>
+            <p>The other candidates are <strong>not penalized</strong>, so they can explore other modes; every \(A_{\mathrm{gt}}\) gets a close candidate, so <strong>no mode is dropped</strong>. One forward pass, and every mode kept.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="section">
       <div class="container is-max-desktop">
         <h2 class="title is-3">The Speed Story</h2>
@@ -604,10 +657,12 @@
             <span class="copy-text">Copy</span>
           </button>
         </div>
-        <pre id="bibtex-code"><code>@article{imlevla2026,
+        <pre id="bibtex-code"><code>@inproceedings{Hosseinkhani2026IMLEVLAFS,
   title={IMLE-VLA: Fast Single-Step Action Generation for Vision-Language-Action Policies},
   author={Hosseinkhani, Kian and Peng, Qinhe and Shramko, George and Aghabozorgi, Mehran and Qian, Jianing and Engst, Tristan and Moazeni, Alireza and Jayaraman, Dinesh and Li, Ke},
-  year={2026}
+  booktitle={IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
+  year={2026},
+  url={https://api.semanticscholar.org/CorpusID:291902373}
 }</code></pre>
       </div>
     </section>
