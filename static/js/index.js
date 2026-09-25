@@ -5,14 +5,25 @@ function copyBibTeX() {
     var button = document.querySelector('.copy-bibtex-btn');
     if (!bibtexElement || !button) return;
     var copyText = button.querySelector('.copy-text');
-    navigator.clipboard.writeText(bibtexElement.textContent).then(function() {
-        button.classList.add('copied');
-        copyText.textContent = 'Copied';
-        setTimeout(function() {
-            button.classList.remove('copied');
-            copyText.textContent = 'Copy';
-        }, 2000);
-    }).catch(function() {});
+    var text = bibtexElement.textContent;
+    function done(ok) {
+        button.classList.toggle('copied', ok);
+        copyText.textContent = ok ? 'Copied' : 'Select and copy';
+        if (!ok) {  // last resort: select the block so Ctrl/Cmd+C works
+            var range = document.createRange(); range.selectNodeContents(bibtexElement);
+            var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(range);
+        }
+        setTimeout(function() { button.classList.remove('copied'); copyText.textContent = 'Copy'; }, 2500);
+    }
+    function legacyCopy() {
+        var ta = document.createElement('textarea'); ta.value = text; ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed'; ta.style.top = '-1000px'; document.body.appendChild(ta); ta.select();
+        var ok = false; try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+        document.body.removeChild(ta); done(ok);
+    }
+    if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(function() { done(true); }).catch(legacyCopy);
+    } else { legacyCopy(); }
 }
 
 function scrollToTop() {
