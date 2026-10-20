@@ -1,0 +1,63 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the IMLE-VLA paper."
+title: "IMLE-VLA: Fast Single-Step Action Generation for Vision-Language-Action Policies"
+type: software
+repository-code: "https://github.com/kianhk6/IMLE-VLA"
+url: "https://kianhk6.github.io/IMLE-VLA/"
+license: Apache-2.0
+authors:
+  - family-names: Hosseinkhani
+    given-names: Kian
+    affiliation: Simon Fraser University
+  - family-names: Peng
+    given-names: Qinhe
+    affiliation: University of Pennsylvania
+  - family-names: Shramko
+    given-names: George
+    affiliation: Simon Fraser University
+  - family-names: Aghabozorgi
+    given-names: Mehran
+    affiliation: Simon Fraser University
+  - family-names: Qian
+    given-names: Jianing
+    affiliation: University of Pennsylvania
+  - family-names: Engst
+    given-names: Tristan
+    affiliation: Simon Fraser University
+  - family-names: Moazeni
+    given-names: Alireza
+    affiliation: Simon Fraser University
+  - family-names: Jayaraman
+    given-names: Dinesh
+    affiliation: University of Pennsylvania
+  - family-names: Li
+    given-names: Ke
+    affiliation: Simon Fraser University
+preferred-citation:
+  type: conference-paper
+  title: "IMLE-VLA: Fast Single-Step Action Generation for Vision-Language-Action Policies"
+  collection-title: "IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)"
+  year: 2026
+  url: "https://arxiv.org/abs/2609.10915"
+  identifiers:
+    - type: other
+      value: "arXiv:2609.10915"
+  authors:
+    - family-names: Hosseinkhani
+      given-names: Kian
+    - family-names: Peng
+      given-names: Qinhe
+    - family-names: Shramko
+      given-names: George
+    - family-names: Aghabozorgi
+      given-names: Mehran
+    - family-names: Qian
+      given-names: Jianing
+    - family-names: Engst
+      given-names: Tristan
+    - family-names: Moazeni
+      given-names: Alireza
+    - family-names: Jayaraman
+      given-names: Dinesh
+    - family-names: Li
+      given-names: Ke
