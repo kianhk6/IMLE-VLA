@@ -88,13 +88,7 @@ submodule and its own Python environment.
 ## Checkpoints
 
 The checkpoints are available on request. Email **kian_hosseinkhani@sfu.ca** with the model you need and we will share a
-download link. Each JAX checkpoint comes as a `<step>/` directory with `params/` and `assets/`; the Triton packages come
-in the layout described under [Fast inference with Triton](#fast-inference-with-triton-55-hz).
-
-| Model | Fine-tuned from | Data | Config | Format |
-|---|---|---|---|---|
-| IMLE-VLA DROID (real robot) | `pi05_droid` | DROID, joint-position actions, 16-step chunks | `16_horrizon_05_lr_2_factor_96_batch` | JAX checkpoint, Triton package |
-| IMLE-VLA LIBERO | `pi05_libero` | LIBERO (4 suites), 50-step chunks | `libero_50_action_05_lr_005_min_2_factor_correct` | JAX checkpoint, Triton package |
+download link. 
 
 ## Training with cIMLE
 
