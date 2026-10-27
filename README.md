@@ -32,7 +32,9 @@ Applied to π₀.₅ (numbers from the paper):
 | Real robot, VLA wall-clock per episode | 1× | **3.9×–6.6× lower** |
 | Real robot, proprioceptive jerk | 1× | **2.2×–3.0× lower** |
 
-This repository is a fork of Physical Intelligence's [openpi](https://github.com/Physical-Intelligence/openpi). Everything
+The repository root is a fork of Physical Intelligence's [openpi](https://github.com/Physical-Intelligence/openpi) (JAX, used
+for DROID and the real robot). The [`lerobot/`](lerobot/README.md) folder is a fork of
+[LeRobot](https://github.com/huggingface/lerobot) with the same IMLE head, used for the LIBERO experiments. Everything
 that openpi can do (π₀, π₀-FAST, π₀.₅, ALOHA / DROID / LIBERO examples, PyTorch port) still works. The sections below
 describe only what IMLE-VLA adds. Real-robot videos are on the [project page](https://kianhk6.github.io/IMLE-VLA/).
 
@@ -98,7 +100,23 @@ huggingface-cli download kinster/IMLE-VLA --include "droid/triton/*" --local-dir
 ```
 
 `./ckpt/droid/jax/57000` is a valid `--policy.dir`, and `./ckpt/droid/triton` a valid package for `scripts/serve_triton.sh`.
-The LIBERO checkpoints are available on request: email **kian_hosseinkhani@sfu.ca**.
+
+The LIBERO checkpoints are in the same Hub repo under `libero/`, one folder per model. For each execution horizon there is a
+**per-suite** checkpoint (the best one for that suite) and an **overall** checkpoint (one model for all four suites):
+
+| Folder | Use with |
+|---|---|
+| `libero/imle_vla_libero_h10_{spatial,object,goal,long,overall}/` | execution horizon H = 10, 50-step action chunks |
+| `libero/imle_vla_libero_h30_{spatial,object,goal,long,overall}/` | execution horizon H = 30, 100-step action chunks |
+
+Each folder holds a PyTorch `pretrained_model/` directory (`config.json`, safetensors weights, pre/post-processor stats).
+
+The LIBERO checkpoints are LeRobot checkpoints. Train and evaluate them with the LeRobot codebase in
+[`lerobot/`](lerobot/README.md), which has its own installation and the LIBERO evaluation script.
+
+```bash
+huggingface-cli download kinster/IMLE-VLA --include "libero/imle_vla_libero_h10_overall/*" --local-dir ./ckpt
+```
 
 ## Training with cIMLE
 

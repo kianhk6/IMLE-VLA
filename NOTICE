@@ -15,6 +15,8 @@ Modifications by the IMLE-VLA authors (Apache-2.0):
   - realtime-vla-imle/: single-step Triton inference engine.
 
 Third-party components:
+  - lerobot/ is a fork of LeRobot v0.4.2, https://github.com/huggingface/lerobot, Copyright The HuggingFace Inc. team,
+    Apache License 2.0 (see lerobot/LICENSE), with the IMLE-VLA action head, EMA and LoRA added by the IMLE-VLA authors.
   - realtime-vla/ and realtime-vla-imle/ are derived from realtime-vla by Dexmal,
     https://github.com/dexmal/realtime-vla, Copyright (c) 2025 Dexmal, MIT License
     (see realtime-vla/LICENSE and realtime-vla-imle/LICENSE). Paper: "Running VLAs at Real-time Speed",
