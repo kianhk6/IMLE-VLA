@@ -87,8 +87,18 @@ submodule and its own Python environment.
 
 ## Checkpoints
 
-The checkpoints are available on request. Email **kian_hosseinkhani@sfu.ca** with the model you need and we will share a
-download link. 
+The real-robot DROID model is on the Hugging Face Hub: **[kinster/IMLE-VLA](https://huggingface.co/kinster/IMLE-VLA)**.
+It ships as a JAX checkpoint (`droid/jax/57000/`, config `16_horrizon_05_lr_2_factor_96_batch`) and as a Triton package
+with the same weights (`droid/triton/`).
+
+```bash
+pip install -U huggingface_hub
+huggingface-cli download kinster/IMLE-VLA --include "droid/jax/*"    --local-dir ./ckpt   # JAX checkpoint
+huggingface-cli download kinster/IMLE-VLA --include "droid/triton/*" --local-dir ./ckpt   # Triton package
+```
+
+`./ckpt/droid/jax/57000` is a valid `--policy.dir`, and `./ckpt/droid/triton` a valid package for `scripts/serve_triton.sh`.
+The LIBERO checkpoints are available on request: email **kian_hosseinkhani@sfu.ca**.
 
 ## Training with cIMLE
 
@@ -156,7 +166,7 @@ The policy server and the clients are unchanged from openpi; only two flags matt
 # DROID / real robot
 python scripts/serve_policy.py --env=DROID --port=8000 policy:checkpoint \
     --policy.config=16_horrizon_05_lr_2_factor_96_batch \
-    --policy.dir=/path/to/checkpoints/16_horrizon_05_lr_2_factor_96_batch/16_horrizon_05_lr_2_factor_96_batch/<step> \
+    --policy.dir=./ckpt/droid/jax/57000 \
     --policy.sample-kwargs='{"num_steps": 1}'
 
 # LIBERO
@@ -246,6 +256,7 @@ cp ~/.cache/openpi/big_vision/paligemma_tokenizer.model $PKG/
 
 ```bash
 scripts/serve_triton.sh $PKG 16_horrizon_05_lr_2_factor_96_batch 0 8000 DROID
+# or the released package: scripts/serve_triton.sh ./ckpt/droid/triton 16_horrizon_05_lr_2_factor_96_batch 0 8000 DROID
 ```
 
 This is equivalent to:
