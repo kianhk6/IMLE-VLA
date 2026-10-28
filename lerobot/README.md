@@ -68,9 +68,6 @@ examples/imle_vla/train_libero.sh h100 ./outputs/imle_libero_h100_lora \
 
 Checkpoints land in `<output_dir>/checkpoints/<step>/pretrained_model/`.
 
-The released overall checkpoints are these recipes at step 4000 (`h50`) and step 5000 (`h100`), not the final step.
-Checkpoints are saved every 1000 steps.
-
 ## Evaluation on LIBERO
 
 ```bash
