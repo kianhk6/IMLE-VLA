@@ -44,6 +44,15 @@ All checkpoints are on the Hugging Face Hub at **[kinster/IMLE-VLA](https://hugg
 | `libero/imle_vla_libero_h10_*` | LIBERO, per suite and overall, execution horizon 10 | [lerobot](lerobot/README.md#checkpoints) |
 | `libero/imle_vla_libero_h30_*` | LIBERO, per suite and overall, execution horizon 30 | [lerobot](lerobot/README.md#checkpoints) |
 
+## Training compute
+
+Both models were trained on 4× NVIDIA L40S. Times are pure training time, without cluster requeue stalls.
+
+| Model | Code | Batch | Time per step | Training time |
+|---|---|---|---|---|
+| LIBERO | [`lerobot/`](lerobot/README.md) | 35 per GPU | about 6 s | about 8 hours to the released checkpoint (step 5000) |
+| DROID (real robot) | [`openpi/`](openpi/README.md) | 96 total (24 per GPU) | about 4.7 s | about 74 hours (3 days) to the released checkpoint (step 57000) |
+
 ## Citation
 
 ```bibtex
