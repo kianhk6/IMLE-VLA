@@ -7,20 +7,20 @@ Copyright Physical Intelligence, licensed under the Apache License, Version 2.0 
 The fork point is upstream commit 86b6dee ("use EGL for headless GPU rendering in libero example", PR #837).
 
 Modifications by the IMLE-VLA authors (Apache-2.0):
-  - src/openpi/models/pi0.py, pi0_config.py: conditional IMLE (cIMLE) training objective and
+  - openpi/src/openpi/models/pi0.py, pi0_config.py: conditional IMLE (cIMLE) training objective and
     single-step action sampling for pi0 / pi0.5.
-  - scripts/train.py, src/openpi/training/config.py: IMLE metrics, training configs, resume fast-forward.
-  - scripts/serve_policy.py: serving of converted Triton checkpoints through the openpi transform pipeline.
-  - examples/: LIBERO execution-horizon flag and timing, direct Triton evaluation, DROID client jerk metric.
-  - realtime-vla-imle/: single-step Triton inference engine.
+  - openpi/scripts/train.py, openpi/src/openpi/training/config.py: IMLE metrics, training configs, resume fast-forward.
+  - openpi/scripts/serve_policy.py: serving of converted Triton checkpoints through the openpi transform pipeline.
+  - openpi/examples/: LIBERO execution-horizon flag and timing, direct Triton evaluation, DROID client jerk metric.
+  - openpi/realtime-vla-imle/: single-step Triton inference engine.
 
 Third-party components:
   - lerobot/ is a fork of LeRobot v0.4.2, https://github.com/huggingface/lerobot, Copyright The HuggingFace Inc. team,
     Apache License 2.0 (see lerobot/LICENSE), with the IMLE-VLA action head, EMA and LoRA added by the IMLE-VLA authors.
-  - realtime-vla/ and realtime-vla-imle/ are derived from realtime-vla by Dexmal,
+  - openpi/realtime-vla/ and openpi/realtime-vla-imle/ are derived from realtime-vla by Dexmal,
     https://github.com/dexmal/realtime-vla, Copyright (c) 2025 Dexmal, MIT License
-    (see realtime-vla/LICENSE and realtime-vla-imle/LICENSE). Paper: "Running VLAs at Real-time Speed",
+    (see openpi/realtime-vla/LICENSE and openpi/realtime-vla-imle/LICENSE). Paper: "Running VLAs at Real-time Speed",
     arXiv:2510.26742.
   - The Gemma / PaliGemma model weights used by pi0 and pi0.5 are subject to the Gemma Terms of Use
     (LICENSE_GEMMA.txt).
-  - third_party/libero and third_party/aloha are git submodules with their own licenses.
+  - openpi/third_party/libero and openpi/third_party/aloha are git submodules with their own licenses.

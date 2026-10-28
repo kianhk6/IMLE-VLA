@@ -2,8 +2,8 @@
 
 This folder is the [LeRobot](https://github.com/huggingface/lerobot) (v0.4.2) implementation of IMLE-VLA used for the
 LIBERO experiments in the paper. It adds a conditional-IMLE single-step action head to LeRobot's π₀.₅ policy, plus EMA
-weights, LoRA fine-tuning and timing in the LIBERO evaluation. The JAX/openpi implementation and the Triton engine live at
-the repository root.
+weights, LoRA fine-tuning and timing in the LIBERO evaluation. The JAX/openpi implementation and the Triton engine are in
+[`../openpi/`](../openpi/README.md).
 
 It is a separate Python package (`lerobot`) with its own dependencies. Install it in its own environment.
 
@@ -91,8 +91,9 @@ python src/lerobot/policies/pi05_imle/convert_pytorch_lerobot_to_jax.py \
     --output_path ./ckpt_jax/imle_vla_libero_h10_overall
 ```
 
-The result is a JAX checkpoint (`params/`) for the openpi code at the repository root. From there,
-`realtime-vla/convert_from_jax_pi05.py` produces a Triton package, as described in the root README.
+The result is a JAX checkpoint (`params/`) for the code in [`../openpi/`](../openpi/README.md). From there,
+`openpi/realtime-vla/convert_from_jax_pi05.py` produces a Triton package, as described in
+[`../openpi/docs/triton.md`](../openpi/docs/triton.md).
 
 ## Citation and license
 
