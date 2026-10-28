@@ -40,8 +40,12 @@ The LIBERO checkpoints are on the Hugging Face Hub in [kinster/IMLE-VLA](https:/
 | `libero/imle_vla_libero_h30_{spatial,object,goal,long,overall}` | 100 | H = 30 |
 
 ```bash
-huggingface-cli download kinster/IMLE-VLA --include "libero/imle_vla_libero_h10_overall/*" --local-dir ./ckpt
+pip install -U huggingface_hub
+huggingface-cli download kinster/IMLE-VLA --include "libero/imle_vla_libero_h10_overall/*" --local-dir ./ckpt   # H = 10, overall
+huggingface-cli download kinster/IMLE-VLA --include "libero/imle_vla_libero_h30_overall/*" --local-dir ./ckpt   # H = 30, overall
 ```
+
+For a per-suite checkpoint, replace `overall` with `spatial`, `object`, `goal` or `long`.
 
 ## Training
 
